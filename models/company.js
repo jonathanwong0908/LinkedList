@@ -5,14 +5,12 @@ const companySchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    email: {
-        type: String,
-        unique: true,
-        lowercase: true
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
     },
-    password: {
-        type: String,
-        required: true
+    description: {
+        type: String
     }
 })
 

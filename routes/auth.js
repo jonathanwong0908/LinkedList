@@ -4,7 +4,7 @@ const checkAuth = require("../controllers/auth").checkAuth;
 
 const router = express.Router();
 
-router.get("/login", checkAuth, authController.getLogin);
+router.get("/login", authController.getLogin);
 
 router.post("/login", authController.postLogin);
 

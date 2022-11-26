@@ -7,6 +7,7 @@
 
     --clr-neutral-900: hsl(0, 0%, 0%);
     --clr-neutral-500: hsl(0, 8%, 31%);
+    --clr-neutral-200: hsl(0, 0%, 97%);
     --clr-neutral-100: hsl(0, 0%, 100%);
 
     --ff-primary: 'Poppins', sans-serif;
@@ -162,6 +163,53 @@ select {
     display: block;
 }
 
+.single-container-section {
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--clr-primary-300);
+}
+
+.form-container {
+    place-items: center;
+    padding: 3rem;
+    width: 30rem;
+    border-radius: 20px;
+    background-color: var(--clr-neutral-100);
+}
+
+.input-form {
+    place-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.input-form input {
+    margin-bottom: .5rem;
+    padding: .5rem 1rem;
+    width: 85%;
+    border-radius: 20px;
+}
+
+.form-title {
+    margin-bottom: 1rem;
+    color: var(--clr-neutral-500);
+    font-weight: var(--fw-semi-bold);
+    font-size: var(--fs-700);
+}
+
+.form-button {
+    padding: .3rem;
+    border-radius: 20px;
+    width: 50%;
+    font-weight: var(--fw-bold);
+}
+
+.form-button:hover,
+.form-button:focus {
+    cursor: pointer;
+}
+
 /* text colors */
 .text-primary-500 {
     color: var(--clr-primary-500);
@@ -177,6 +225,10 @@ select {
 
 .text-neutral-500 {
     color: var(--clr-neutral-500);
+}
+
+.text-neutral-200 {
+    color: var(--clr-neutral-200);
 }
 
 .text-neutral-100 {
@@ -198,6 +250,10 @@ select {
 
 .bg-neutral-500 {
     background-color: var(--clr-neutral-500);
+}
+
+.bg-neutral-200 {
+    background-color: var(--clr-neutral-200);
 }
 
 .bg-neutral-100 {

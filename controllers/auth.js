@@ -24,7 +24,7 @@ exports.getGoogleLogin = passportSetup.googleAuth;
 exports.getGoogleRedirect = passportSetup.googleRedirectAuth;
 
 exports.checkAuth = (req, res, next) => {
-    return req.user ? res.redirect("/auth/login") : next();
+    req.user ? res.redirect("/auth/login") : next();
 }
 
 

@@ -20,6 +20,15 @@ const userSchema = new mongoose.Schema({
     },
     user_type: {
         type: String
+    },
+    profile_completed: {
+        type: Boolean,
+        default: false
+    },
+    created_at: {
+        type: Date,
+        default: () => Date.now(),
+        immutable: true
     }
 })
 

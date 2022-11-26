@@ -17,8 +17,6 @@ app.use(session({
     saveUninitialized: false
 }))
 
-// app.use(cors());
-
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));

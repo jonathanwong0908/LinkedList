@@ -5,10 +5,10 @@
 
 <body class="ff-primary">
     <%- include("../includes/navigation.ejs") %>
-    <section class="login-section grid bg-primary-300">
-        <div class="login-container grid bg-neutral-100">
-            <h2 class="login-title text-neutral-500 fw-semi-bold fs-700">Login to business account</h2>
-            <form class="login-form grid" action="/business/login" method="POST">
+    <section class="single-container-section grid">
+        <div class="form-container grid bg-neutral-100">
+            <h2 class="form-title">Login to business account</h2>
+            <form class="input-form grid" action="/business/login" method="POST">
                 <input class="bg-primary-300" type="email" placeholder="Email" name="email">
                 <input class="bg-primary-300" type="password" placeholder="Password" name="password">
                 <button class="login-form-button login-button fw-bold bg-primary-500 text-neutral-100"

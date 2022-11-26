@@ -24,7 +24,7 @@ passport.use("local-login", new LocalStrategy({
     usernameField: "email"
 }, async (email, password, done) => {
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || user.user_type !== "candidate") {
         return done(null, false);
     }
     const isMatch = await bcrypt.compare(password, user.password);
@@ -51,7 +51,7 @@ passport.use("business-login", new LocalStrategy({
     usernameField: "email"
 }, async (email, password, done) => {
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || user.user_type !== "employer") {
         return done(null, false);
     }
     const isMatch = await bcrypt.compare(password, user.password);
@@ -82,13 +82,11 @@ passport.use("google", new GoogleStrategy({
 }))
 
 passport.serializeUser((user, done) => {
-    // console.log(user.id);
     done(null, user.id);
 })
 
 passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
-    console.log(user);
     return user ? done(null, user) : done(null, false);
 })
 
