@@ -1,0 +1,67 @@
+.login-section {
+    place-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    place-items: center;
+    width: 30rem;
+    padding: 3rem;
+    border-radius: 20px;
+}
+
+.login-title {
+    margin-bottom: 1rem;
+}
+
+.auth-buttons {
+    justify-content: space-between;
+    width: 40%;
+    margin: 1rem;
+}
+
+.auth-button {
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.google-button {
+    background-color: hsl(0, 50%, 56%);
+}
+
+.login-form {
+    place-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.login-form input {
+    margin-bottom: .5rem;
+    padding: .5rem 1rem;
+    width: 85%;
+    border-radius: 20px;
+}
+
+.login-form-button {
+    padding: .3rem;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.login-form-button:hover,
+.login-form-button:focus {
+    cursor: pointer;
+}
+
+.login-button {
+    margin-top: 1rem;
+}
+
+.signup-button {
+    margin: .5rem 0 2rem 0;
+    text-align: center;
+    border: 1px solid var(--clr-primary-500);
+}

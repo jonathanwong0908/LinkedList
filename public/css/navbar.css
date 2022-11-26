@@ -1,0 +1,36 @@
+.primary-header {
+    position: fixed;
+    width: 100vw;
+}
+
+.primary-navbar {
+    justify-content: space-between;
+    padding: 1rem 4rem;
+}
+
+.nav-left,
+.nav-right {
+    align-items: center;
+}
+
+.logo {
+    margin-right: 3rem;
+}
+
+.nav-search-bar-input {
+    margin-right: .5rem;
+    padding: .35rem .75rem;
+    border-radius: 20px;
+}
+
+.nav-search-bar-button {
+    background-color: transparent;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.nav-button {
+    margin-left: 3rem;
+}
