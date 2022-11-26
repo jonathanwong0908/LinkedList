@@ -14,13 +14,17 @@ exports.getBusinessSignup = (req, res) => {
     res.render("business/business-signup");
 }
 
-exports.getBusiness = (req, res) => {
-    res.render("business/business-main");
+exports.getBusiness = async (req, res) => {
+    const company = await Company.findOne({ user: req.user.id });
+    res.render("business/business-main", {
+        user: req.user,
+        company: company
+    });
 }
 
-exports.postCreateBusiness = async (req, res, next) => {
+exports.postCreateBusiness = async (req, res) => {
     const userId = req.user.id;
-    const name = req.body.companyName;
+    const name = capitalizeFirstLetter(req.body.companyName);
     const description = req.body.companyDescription;
     const company = await Company.findOne({ name: req.body.companyName })
     if (company) {
@@ -34,10 +38,32 @@ exports.postCreateBusiness = async (req, res, next) => {
     res.redirect("/business");
 }
 
+exports.getNewJob = async (req, res) => {
+    const user = req.user
+    const company = await Company.findOne({ user: user.id });
+    res.render("business/business-new-job", {
+        title: "New Job",
+        user: user,
+        company: company
+    })
+}
+
+exports.getLogout = (req, res) => {
+    req.logout((err) => {
+        if (err) return err;
+        res.redirect("/business/login");
+    })
+}
+
 exports.checkAuth = (req, res, next) => {
     req.user ? next() : res.redirect("/business/login")
 }
 
 exports.checkFirstLogin = (req, res, next) => {
     req.user.profile_completed ? next() : res.render("business/business-create");
+}
+
+function capitalizeFirstLetter(string) {
+    let lowerCaseString = string.toLowerCase();
+    return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
 }

@@ -1,0 +1,35 @@
+<header class="primary-header grid bg-primary-500">
+    <nav class="primary-navbar flex">
+        <div class="nav-left flex">
+            <a class="logo fs-800 text-neutral-100 fw-semi-bold" href="/">LinkedList</a>
+            <% if (user && user.user_type === "employer") { %>
+            <a href="/business/new-job"
+                class="nav-button new-job-button fs-600 fw-semi-bold bg-neutral-100 text-primary-500">New
+                Job</a>
+            <% } else { %>
+            <form class="nav-search-bar" action="">
+                <input class="nav-search-bar-input" type="text" placeholder="Search Jobs">
+                <button class="nav-search-bar-button bg-neutral-100" type="submit"><i
+                        class="fa-solid fa-magnifying-glass text-neutral-100"></i></button>
+            </form>
+            <% } %>
+        </div>
+
+        <button class="mobile-nav-toggle" aria-controls="primary-navbar" aria-expanded="false"><span
+                class="sr-only">Menu</span></button>
+
+        <ul class="nav-right flex">
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/"><%= company.name %> Jobs</a>
+            </li>
+            <% if(user && user.user_type === "employer") { %>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/">Company Profile</a></li>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/business/logout">Logout</a>
+            </li>
+            <% } else { %>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/">Jobs</a></li>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/">My Profile</a></li>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/auth/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

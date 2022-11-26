@@ -6,7 +6,7 @@
 
 .input-form input,
 .input-form textarea {
-    margin-top: .5rem;
+    margin: .5rem 0 .5rem 0;
     width: 100%;
     border: none;
     border-radius: 20px;
@@ -14,11 +14,11 @@
 
 .input-form textarea {
     resize: none;
-    padding: .5rem 1rem;
+    padding: 1rem 1rem;
     height: 10rem;
 }
 
-.create-business-button {
+.create-button {
     width: 30%;
     margin-top: 2rem;
     align-self: center;

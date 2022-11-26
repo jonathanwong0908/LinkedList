@@ -15,4 +15,8 @@ router.post("/signup", businessController.postBusinessSignup);
 
 router.post("/create-business", businessController.checkAuth, businessController.postCreateBusiness);
 
+router.get("/logout", businessController.getLogout);
+
+router.get("/new-job", businessController.getNewJob);
+
 module.exports = router;

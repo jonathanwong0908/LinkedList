@@ -14,7 +14,12 @@
 }
 
 .logo {
-    margin-right: 3rem;
+    margin-right: 2rem;
+}
+
+.new-job-button {
+    padding: .3rem 1.5rem;
+    border-radius: 20px;
 }
 
 .nav-search-bar-input {
