@@ -2,7 +2,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../models/user");
-const Company = require("../models/company");
 const bcrypt = require("bcrypt");
 
 // local signup
@@ -15,22 +14,9 @@ passport.use("local-signup", new LocalStrategy({
     }
     const hash = await bcrypt.hash(password, 10);
     let newUser = new User({ email, password: hash });
+    newUser.user_type = "candidate";
     await newUser.save();
     return done(null, newUser);
-}))
-
-// business signup
-passport.use("business-signup", new LocalStrategy({
-    usernameField: "email"
-}, async (email, password, done) => {
-    let company = await Company.findOne({ email });
-    if (company) {
-        return done(null, false);
-    }
-    const hash = await bcrypt.hash(password, 10);
-    let newCompany = new Company({ email, password: hash });
-    await newCompany.save();
-    return done(null, newCompany);
 }))
 
 // local login
@@ -45,16 +31,31 @@ passport.use("local-login", new LocalStrategy({
     return isMatch ? done(null, user) : done(null, false);
 }))
 
+// business signup
+passport.use("business-signup", new LocalStrategy({
+    usernameField: "email"
+}, async (email, password, done) => {
+    let user = await User.findOne({ email });
+    if (user) {
+        return done(null, false);
+    }
+    const hash = await bcrypt.hash(password, 10);
+    let newUser = new User({ email, password: hash });
+    newUser.user_type = "employer";
+    await newUser.save();
+    return done(null, newUser);
+}))
+
 // business login
 passport.use("business-login", new LocalStrategy({
     usernameField: "email"
 }, async (email, password, done) => {
-    const company = await Company.findOne({ email });
-    if (!company) {
+    const user = await User.findOne({ email });
+    if (!user) {
         return done(null, false);
     }
-    const isMatch = await bcrypt.compare(password, company.password);
-    return isMatch ? done(null, company) : done(null, false);
+    const isMatch = await bcrypt.compare(password, user.password);
+    return isMatch ? done(null, user) : done(null, false);
 }))
 
 // google
@@ -68,11 +69,11 @@ passport.use("google", new GoogleStrategy({
     const first_name = profile.name.givenName;
     const last_name = profile.name.familyName;
     const user = await User.findOne({ google_id });
-    console.log(user);
     if (!user) {
         const newUser = new User({
             email, google_id, first_name, last_name
         });
+        newUser.user_type = "candidate";
         await newUser.save();
         return done(null, newUser);
     } else {
@@ -81,11 +82,13 @@ passport.use("google", new GoogleStrategy({
 }))
 
 passport.serializeUser((user, done) => {
+    // console.log(user.id);
     done(null, user.id);
 })
 
 passport.deserializeUser(async (id, done) => {
-    const user = await User.findOne({ id });
+    const user = await User.findById(id);
+    console.log(user);
     return user ? done(null, user) : done(null, false);
 })
 
@@ -113,7 +116,7 @@ exports.businessSignupAuth = passport.authenticate("business-signup", {
     failureRedirect: "/business/signup"
 })
 
-exports.businessLogin = passport.authenticate("business-login", {
-    successRedirect: "/",
+exports.businessLoginAuth = passport.authenticate("business-login", {
+    successRedirect: "/business",
     failureRedirect: "/business/login"
 })

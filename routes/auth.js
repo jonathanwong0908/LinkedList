@@ -1,9 +1,10 @@
 const express = require("express");
 const authController = require("../controllers/auth");
+const checkAuth = require("../controllers/auth").checkAuth;
 
 const router = express.Router();
 
-router.get("/login", authController.getLogin);
+router.get("/login", checkAuth, authController.getLogin);
 
 router.post("/login", authController.postLogin);
 
@@ -14,5 +15,7 @@ router.post("/signup", authController.postSignup);
 router.get("/google", authController.getGoogleLogin);
 
 router.get("/google/redirect", authController.getGoogleRedirect);
+
+router.get("/logout", authController.getLogout);
 
 module.exports = router;

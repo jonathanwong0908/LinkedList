@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
     },
     google_id: {
         type: String
+    },
+    user_type: {
+        type: String
     }
 })
 

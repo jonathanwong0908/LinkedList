@@ -34,7 +34,7 @@ app.use("/auth", authRoutes);
 app.use("/business", businessRoutes);
 
 app.get("/", (req, res) => {
-    console.log(req.isAuthenticated(), req.user);
+    console.log(req.isAuthenticated());
     res.render("main");
 })
 
