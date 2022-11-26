@@ -1,0 +1,21 @@
+<%- include("../includes/head.ejs") %>
+<link rel="stylesheet" href="/css/login.css">
+<title>Login</title>
+</head>
+
+<body class="ff-primary">
+    <%- include("../includes/navigation.ejs") %>
+    <section class="login-section grid bg-primary-300">
+        <div class="login-container grid bg-neutral-100">
+            <h2 class="login-title text-neutral-500 fw-semi-bold fs-700">Signup business account</h2>
+            <form class="login-form grid" action="/auth/login" method="POST">
+                <input class="bg-primary-300" type="email" placeholder="Email" name="email">
+                <input class="bg-primary-300" type="password" placeholder="Password" name="password">
+                <button class="login-form-button signup-button fw-bold text-primary-500 bg-neutral-100"
+                    type="submit">SIGNUP</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

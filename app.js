@@ -2,12 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
 
 const authRoutes = require("./routes/auth");
+const businessRoutes = require("./routes/business");
 
 mongoose.connect("mongodb://localhost/LinkedList");
 // session
@@ -31,6 +31,7 @@ app.use(passport.session());
 
 // routes
 app.use("/auth", authRoutes);
+app.use("/business", businessRoutes);
 
 app.get("/", (req, res) => {
     console.log(req.isAuthenticated(), req.user);

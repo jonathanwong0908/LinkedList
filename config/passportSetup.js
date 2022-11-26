@@ -2,6 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../models/user");
+const Company = require("../models/company");
 const bcrypt = require("bcrypt");
 
 // local signup
@@ -18,18 +19,42 @@ passport.use("local-signup", new LocalStrategy({
     return done(null, newUser);
 }))
 
+// business signup
+passport.use("business-signup", new LocalStrategy({
+    usernameField: "email"
+}, async (email, password, done) => {
+    let company = await Company.findOne({ email });
+    if (company) {
+        return done(null, false);
+    }
+    const hash = await bcrypt.hash(password, 10);
+    let newCompany = new Company({ email, password: hash });
+    await newCompany.save();
+    return done(null, newCompany);
+}))
+
 // local login
 passport.use("local-login", new LocalStrategy({
     usernameField: "email"
 }, async (email, password, done) => {
     const user = await User.findOne({ email });
-
     if (!user) {
         return done(null, false);
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
     return isMatch ? done(null, user) : done(null, false);
+}))
+
+// business login
+passport.use("business-login", new LocalStrategy({
+    usernameField: "email"
+}, async (email, password, done) => {
+    const company = await Company.findOne({ email });
+    if (!company) {
+        return done(null, false);
+    }
+    const isMatch = await bcrypt.compare(password, company.password);
+    return isMatch ? done(null, company) : done(null, false);
 }))
 
 // google
@@ -81,4 +106,14 @@ exports.googleAuth = passport.authenticate("google", {
 exports.googleRedirectAuth = passport.authenticate("google", {
     successRedirect: "/",
     failureRedirect: "/auth/login"
+})
+
+exports.businessSignupAuth = passport.authenticate("business-signup", {
+    successRedirect: "/business/login",
+    failureRedirect: "/business/signup"
+})
+
+exports.businessLogin = passport.authenticate("business-login", {
+    successRedirect: "/",
+    failureRedirect: "/business/login"
 })
