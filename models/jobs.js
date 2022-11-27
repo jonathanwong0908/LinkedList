@@ -17,6 +17,9 @@ const jobSchema = new mongoose.Schema({
     max_salary: {
         type: Number
     },
+    salary_negotiable: {
+        type: Boolean
+    },
     language: {
         type: [mongoose.SchemaTypes.ObjectId],
         ref: "Language"

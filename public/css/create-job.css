@@ -1,0 +1,104 @@
+.create-job-section {
+    height: 100%;
+    gap: 2rem;
+}
+
+.create-job-container {
+    margin: 10rem 0 10rem 0;
+    width: 60%;
+}
+
+.salary-section {
+    margin: .5rem 0 1rem 0;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.salary-section input {
+    margin: 0 .75rem .5rem 0;
+    width: 30%;
+}
+
+.salary-negotiable-checkbox {
+    width: 30%;
+}
+
+.salary-section input[type="checkbox"] {
+    border: none;
+    margin-right: 0;
+    width: 1.5rem;
+}
+
+.salary-section input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+.salary-section label {
+    padding: .5rem 1rem;
+}
+
+.language-section {
+    height: 12rem;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.required-language-container {
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.required-language-button-container {
+    /* background-color: yellowgreen; */
+    position: absolute;
+    bottom: 0;
+    height: 60%;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0 1.2rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.selected-language-button {
+    width: 100%;
+    height: 2rem;
+    padding: .2rem 1rem;
+    margin-bottom: .5rem;
+    border-radius: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-icon {
+    margin-left: .3rem;
+}
+
+.search-language {
+    width: 45%;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.search-language input {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.language-container {
+    flex-flow: column;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.select-language-button {
+    width: 100%;
+    height: 2rem;
+    padding: .2rem .5rem;
+    margin-bottom: .5rem;
+    border-radius: 20px;
+}

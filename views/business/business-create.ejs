@@ -1,5 +1,4 @@
 <%- include("../includes/head.ejs") %>
-<link rel="stylesheet" href="/css/login.css">
 <title>Create Business Profile</title>
 <link rel="stylesheet" href="/css/create-form.css">
 </head>
@@ -11,7 +10,7 @@
             <h2 class="form-title">Create company profile</h2>
             <form action="/business/create-business" class="input-form grid" method="POST">
                 <label for="companyName" class="text-neutral-500">Company Name</label>
-                <input type="text" name="companyName" class="bg-neutral-200" required>
+                <input type="text" name="companyName" class="company-name-input bg-neutral-200" required>
                 <label for="companyDescription" class="text-neutral-500">Company Description</label>
                 <textarea name="companyDescription" class="bg-neutral-200"></textarea>
                 <button class="form-button create-button bg-primary-500 text-neutral-100">Save</button>

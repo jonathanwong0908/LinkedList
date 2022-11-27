@@ -1,6 +1,7 @@
 const passportSetup = require("../config/passportSetup");
 const User = require("../models/user");
 const Company = require("../models/company");
+const Language = require("../models/language");
 
 exports.postBusinessSignup = passportSetup.businessSignupAuth;
 
@@ -41,10 +42,12 @@ exports.postCreateBusiness = async (req, res) => {
 exports.getNewJob = async (req, res) => {
     const user = req.user
     const company = await Company.findOne({ user: user.id });
+    const languages = await Language.find();
     res.render("business/business-new-job", {
         title: "New Job",
         user: user,
-        company: company
+        company: company,
+        languages: languages
     })
 }
 
