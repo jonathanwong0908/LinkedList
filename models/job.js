@@ -20,13 +20,17 @@ const jobSchema = new mongoose.Schema({
     salary_negotiable: {
         type: Boolean
     },
-    language: {
-        type: [mongoose.SchemaTypes.ObjectId],
-        ref: "Language"
-    },
-    created_by: {
+    applicant: {
         type: [mongoose.SchemaTypes.ObjectId],
         ref: "User"
+    },
+    language: {
+        type: [String],
+        ref: "Language"
+    },
+    company_id: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "Company"
     },
     created_at: {
         type: Date,

@@ -19,7 +19,7 @@
                 <textarea name="jobRequirement" class="bg-neutral-200"></textarea>
                 <label class="salary-label text-neutral-500">Salary</label>
                 <div class="salary-section flex">
-                    <input type="number" name="minSalary" class="salary-input bg-neutral-200" required
+                    <input type="number" name="minSalary" min="1" class="salary-input bg-neutral-200" required
                         placeholder="min">
                     <input type="number" name="maxSalary" class="salary-input bg-neutral-200" required
                         placeholder="max">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="form-button create-button bg-primary-500 text-neutral-100">Add</button>
+                <button class="form-button create-button bg-primary-500 text-neutral-100" type="submit">Add</button>
             </form>
         </div>
     </section>

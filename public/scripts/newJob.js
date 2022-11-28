@@ -7,7 +7,6 @@ const searchInput = document.querySelector(".search-language-input");
 searchInput.addEventListener("input", (event) => {
     const value = event.target.value;
     selectLanguageButtons.forEach(button => {
-        // if button has hidden class, exclude
         const isVisible = button.innerText.includes(value);
         button.classList.toggle("hidden", !isVisible);
     })
@@ -71,11 +70,11 @@ function addSelectedLanguage(language) {
     requiredLanguageContainer.append(button);
 }
 
-function unhideButton(language) {
-    let hiddenItems = document.querySelectorAll(".hidden");
-    hiddenItems.forEach(item => {
-        if (item.innerText === language) {
-            item.classList.remove("hidden");
-        }
-    })
-}
+// function unhideButton(language) {
+//     let hiddenItems = document.querySelectorAll(".hidden");
+//     hiddenItems.forEach(item => {
+//         if (item.innerText === language) {
+//             item.classList.remove("hidden");
+//         }
+//     })
+// }

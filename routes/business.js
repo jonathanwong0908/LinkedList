@@ -29,4 +29,6 @@ router.get("/new-job",
     businessController.getNewJob
 );
 
+router.post("/create-job", businessController.checkAuth, businessController.postCreateJob);
+
 module.exports = router;

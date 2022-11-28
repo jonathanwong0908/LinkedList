@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 
 const companySchema = new mongoose.Schema({
     name: {
-        type: String,
-        unique: true
+        type: String
     },
-    user: {
+    user_id: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User"
     },
