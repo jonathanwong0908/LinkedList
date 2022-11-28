@@ -5,19 +5,20 @@
 
 <body class="ff-primary">
     <%- include("../includes/navigation.ejs") %>
-    <section class="single-container-section grid">
-        <div class="form-container grid">
+    <section class="login-section grid">
+        <div class="login-form-container grid bg-neutral-100">
             <h2 class="form-title">Sign Up</h2>
-            <div class="auth-buttons flex">
-                <a class="auth-button google-button" href="/auth/google"><i
+            <div class="social-button-container flex">
+                <a class="social-button google-button" href="/auth/google"><i
                         class="text-neutral-100 fa-brands fa-google fa-2xl"></i></a>
-                <a class="auth-button bg-neutral-900" href="/"><i
+                <a class="social-button bg-neutral-900" href="/"><i
                         class="text-neutral-100 fa-brands fa-github fa-2xl"></i></a>
             </div>
-            <form class="input-form grid" action="/auth/signup" method="POST">
-                <input class="bg-primary-300" type="email" placeholder="Email" name="email">
-                <input class="bg-primary-300" type="password" placeholder="Password" name="password">
-                <button class="form-button signup-button text-primary-500 bg-neutral-100" type="submit">SIGNUP</button>
+            <form class="login-form grid" action="/auth/signup" method="POST">
+                <input class="login-form-input bg-primary-300" type="email" placeholder="Email" name="email">
+                <input class="login-form-input bg-primary-300" type="password" placeholder="Password" name="password">
+                <button class="login-form-button signup-button text-primary-500 bg-neutral-100 fw-bold"
+                    type="submit">SIGNUP</button>
             </form>
             <a class="business-button text-neutral-500" href="/business/signup">Business signup</a>
         </div>

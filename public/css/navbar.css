@@ -1,6 +1,8 @@
 .primary-header {
-    position: fixed;
+    /* position: fixed; */
+    align-items: center;
     width: 100vw;
+    height: 5rem;
 }
 
 .primary-navbar {

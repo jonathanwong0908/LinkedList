@@ -1,57 +1,76 @@
 .create-job-section {
-    height: 100%;
-    gap: 2rem;
+    place-items: center;
+}
+
+.create-job-title {
+    align-self: center;
+    margin-bottom: 2rem;
+}
+
+.create-job-form {
+    flex-direction: column;
 }
 
 .create-job-container {
-    margin: 10rem 0 10rem 0;
+    flex-direction: column;
+    margin: 5rem 0;
+    padding: 3rem;
     width: 60%;
+    border-radius: 20px;
 }
 
-.salary-section {
-    margin: .5rem 0 1rem 0;
+.create-job-label {
+    color: var(--clr-neutral-500);
+}
+
+.create-job-input,
+.create-job-textarea {
+    margin: .5rem 0 1.5rem 0;
     width: 100%;
-    justify-content: space-between;
+    border-radius: 20px;
+    background-color: var(--clr-neutral-200);
 }
 
-.salary-section input {
-    margin: 0 .75rem .5rem 0;
-    width: 30%;
-}
-
-.salary-negotiable-checkbox {
-    width: 30%;
-}
-
-.salary-section input[type="checkbox"] {
-    border: none;
-    margin-right: 0;
-    width: 1.5rem;
-}
-
-.salary-section input[type="checkbox"]:hover {
-    cursor: pointer;
-}
-
-.salary-section label {
+.create-job-input {
     padding: .5rem 1rem;
 }
 
-.language-section {
-    height: 12rem;
-    width: 100%;
-    justify-content: space-between;
+.create-job-textarea {
+    padding: 1rem;
+    height: 7rem;
+    border: none;
 }
 
-.required-language-container {
-    /* background-color: aqua; */
+.create-job-button {
+    align-self: center;
+    margin-top: 2.5rem;
+    padding: .3rem;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.salary-area {
+    align-items: center;
+    margin: .5rem 0 1.5rem 0;
+}
+
+.salary-input {
+    margin: 0;
+    margin-right: 2rem;
+    width: 25%;
+}
+
+.selected-language-container {
     position: relative;
 }
 
+.selected-language-textarea {
+    height: 10.5rem;
+}
+
 .required-language-button-container {
-    /* background-color: yellowgreen; */
     position: absolute;
-    bottom: 0;
+    bottom: 1.4rem;
     height: 60%;
     width: 100%;
     margin-bottom: 1.5rem;
@@ -61,26 +80,22 @@
 }
 
 .selected-language-button {
-    width: 100%;
-    height: 2rem;
-    padding: .2rem 1rem;
-    margin-bottom: .5rem;
-    border-radius: 20px;
     justify-content: space-between;
     align-items: center;
+    padding: .2rem 1rem;
+    margin-bottom: .5rem;
+    width: 100%;
+    height: 2rem;
+    border-radius: 20px;
 }
 
-.fa-icon {
-    margin-left: .3rem;
-}
-
-.search-language {
+.search-language-area {
     width: 45%;
     flex-direction: column;
     margin-left: 1rem;
 }
 
-.search-language input {
+.search-language-input {
     margin-bottom: 1rem;
     width: 100%;
 }
@@ -89,16 +104,20 @@
     flex-flow: column;
     border-radius: 20px;
     width: 100%;
-    height: 100%;
+    height: 7rem;
     padding: 1rem;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.select-language-button {
+.language-button {
     width: 100%;
     height: 2rem;
     padding: .2rem .5rem;
     margin-bottom: .5rem;
     border-radius: 20px;
+}
+
+.hidden {
+    display: none;
 }

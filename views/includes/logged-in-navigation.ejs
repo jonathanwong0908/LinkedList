@@ -19,7 +19,8 @@
                 class="sr-only">Menu</span></button>
 
         <ul class="nav-right flex">
-            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/"><%= company.name %> Jobs</a>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600"
+                    href="/business/dashboard"><%= company.name %> Jobs</a>
             </li>
             <% if(user && user.user_type === "employer") { %>
             <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/">Company Profile</a></li>

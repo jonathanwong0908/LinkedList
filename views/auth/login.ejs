@@ -5,21 +5,21 @@
 
 <body class="ff-primary">
     <%- include("../includes/navigation.ejs") %>
-    <section class="single-container-section grid">
-        <div class="form-container grid bg-neutral-100">
+    <section class="login-section grid">
+        <div class="login-form-container grid bg-neutral-100">
             <h2 class="form-title">Login to your account</h2>
-            <div class="auth-buttons flex">
-                <a class="auth-button google-button" href="/auth/google"><i
+            <div class="social-button-container flex">
+                <a class="social-button google-button" href="/auth/google"><i
                         class="text-neutral-100 fa-brands fa-google fa-2xl"></i></a>
-                <a class="auth-button bg-neutral-900" href="/"><i
+                <a class="social-button bg-neutral-900" href="/"><i
                         class="text-neutral-100 fa-brands fa-github fa-2xl"></i></a>
             </div>
-            <form class="input-form grid" action="/auth/login" method="POST">
-                <input class="bg-primary-300" type="email" placeholder="Email" name="email">
-                <input class="bg-primary-300" type="password" placeholder="Password" name="password">
-                <button class="form-button login-button bg-primary-500 text-neutral-100" type="submit">LOGIN</button>
+            <form class="login-form grid" action="/auth/login" method="POST">
+                <input class="login-form-input bg-primary-300" type="email" placeholder="Email" name="email">
+                <input class="login-form-input bg-primary-300" type="password" placeholder="Password" name="password">
+                <button class="login-form-button bg-primary-500 text-neutral-100 fw-bold" type="submit">LOGIN</button>
             </form>
-            <a class="form-button signup-button d-block text-primary-500" href="/auth/signup">SIGNUP</a>
+            <a class="login-form-button signup-button d-block text-primary-500 fw-bold" href="/auth/signup">SIGNUP</a>
             <a class="business-button text-neutral-500" href="/business/login">Business login</a>
         </div>
     </section>

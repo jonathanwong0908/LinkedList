@@ -5,15 +5,17 @@
 
 <body class="ff-primary">
     <%- include("../includes/navigation.ejs") %>
-    <section class="single-container-section grid bg-primary-300">
-        <div class="form-container grid">
+    <section class="create-company-section grid bg-primary-300">
+        <div class="create-company-form-container grid bg-neutral-100">
             <h2 class="form-title">Create company profile</h2>
-            <form action="/business/create-business" class="input-form grid" method="POST">
-                <label for="companyName" class="text-neutral-500">Company Name</label>
-                <input type="text" name="companyName" class="company-name-input bg-neutral-200" required>
-                <label for="companyDescription" class="text-neutral-500">Company Description</label>
-                <textarea name="companyDescription" class="bg-neutral-200"></textarea>
-                <button class="form-button create-button bg-primary-500 text-neutral-100">Save</button>
+            <form action="/business/create-business" class="create-company-form flex" method="POST">
+                <label for="companyName" class="create-company-label text-neutral-500">Company Name</label>
+                <input type="text" name="companyName" class="create-company-input company-name-input bg-neutral-200"
+                    required>
+                <label for="companyDescription" class="create-company-label text-neutral-500">Company
+                    Description</label>
+                <textarea name="companyDescription" class="create-company-textarea bg-neutral-200"></textarea>
+                <button class="create-company-button bg-primary-500 text-neutral-100 fw-bold">Save</button>
             </form>
         </div>
     </section>

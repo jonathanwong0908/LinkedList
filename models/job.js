@@ -26,7 +26,6 @@ const jobSchema = new mongoose.Schema({
     },
     language: {
         type: [String],
-        ref: "Language"
     },
     company_id: {
         type: mongoose.SchemaTypes.ObjectId,

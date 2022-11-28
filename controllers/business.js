@@ -17,7 +17,7 @@ exports.getBusinessSignup = (req, res) => {
 }
 
 exports.getBusiness = async (req, res) => {
-    const company = await Company.findOne({ user: req.user.id });
+    const company = await Company.findOne({ user_id: req.user.id });
     res.render("business/business-main", {
         user: req.user,
         company: company
@@ -29,7 +29,6 @@ exports.postCreateBusiness = async (req, res) => {
     const companyName = capitalizeFirstLetter(req.body.companyName);
     const description = req.body.companyDescription;
     const company = await Company.findOne({ name: companyName });
-    // console.log(company);
 
     if (company !== null) {
         return res.render("business/business-create");
@@ -43,8 +42,8 @@ exports.postCreateBusiness = async (req, res) => {
 }
 
 exports.getNewJob = async (req, res) => {
-    const user = req.user
-    const company = await Company.findOne({ user: user.id });
+    const user = req.user;
+    const company = await Company.findOne({ user_id: user.id });
     const languages = await Language.find();
     res.render("business/business-new-job", {
         title: "New Job",
@@ -62,7 +61,7 @@ exports.postCreateJob = async (req, res) => {
         salaryNegotiable = true;
     }
     const selectedLanguagesArray = splitStringToArray(req.body.languages);
-    const newJob = await new Job({
+    const newJob = new Job({
         job_title: req.body.jobTitle,
         job_description: req.body.jobDescription,
         job_requirement: req.body.jobRequirement,
@@ -74,7 +73,16 @@ exports.postCreateJob = async (req, res) => {
     newJob.language = selectedLanguagesArray;
     console.log(newJob);
     await newJob.save();
-    res.redirect("/business/new-job");
+    res.redirect("/business/business-dashboard");
+}
+
+exports.getCompanyDashBoard = async (req, res) => {
+    const user = req.user;
+    const company = await Company.findOne({ user_id: user.id })
+    res.render("business/business-dashboard", {
+        user: user,
+        company: company
+    });
 }
 
 exports.getLogout = (req, res) => {

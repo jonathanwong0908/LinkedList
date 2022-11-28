@@ -5,14 +5,13 @@
 
 <body class="ff-primary">
     <%- include("../includes/navigation.ejs") %>
-    <section class="single-container-section grid">
-        <div class="form-container grid bg-neutral-100">
+    <section class="login-section grid">
+        <div class="login-form-container grid bg-neutral-100">
             <h2 class="form-title">Login to business account</h2>
-            <form class="input-form grid" action="/business/login" method="POST">
-                <input class="bg-primary-300" type="email" placeholder="Email" name="email">
-                <input class="bg-primary-300" type="password" placeholder="Password" name="password">
-                <button class="login-form-button login-button fw-bold bg-primary-500 text-neutral-100"
-                    type="submit">LOGIN</button>
+            <form class="login-form grid" action="/business/login" method="POST">
+                <input class="login-form-input bg-primary-300" type="email" placeholder="Email" name="email">
+                <input class="login-form-input bg-primary-300" type="password" placeholder="Password" name="password">
+                <button class="login-form-button fw-bold bg-primary-500 text-neutral-100" type="submit">LOGIN</button>
             </form>
             <a class="login-form-button signup-button d-block fw-bold text-primary-500"
                 href="/business/signup">SIGNUP</a>

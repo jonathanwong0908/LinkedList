@@ -164,51 +164,11 @@ select {
     display: block;
 }
 
-.single-container-section {
-    place-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--clr-primary-300);
-}
-
-.form-container {
-    place-items: center;
-    padding: 3rem;
-    width: 30rem;
-    border-radius: 20px;
-    background-color: var(--clr-neutral-100);
-}
-
-.input-form {
-    place-items: center;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.input-form input {
-    margin-bottom: .5rem;
-    padding: .5rem 1rem;
-    width: 85%;
-    border-radius: 20px;
-}
-
 .form-title {
     margin-bottom: 1rem;
     color: var(--clr-neutral-500);
     font-weight: var(--fw-semi-bold);
     font-size: var(--fs-700);
-}
-
-.form-button {
-    padding: .3rem;
-    border-radius: 20px;
-    width: 50%;
-    font-weight: var(--fw-bold);
-}
-
-.form-button:hover,
-.form-button:focus {
-    cursor: pointer;
 }
 
 /* text colors */

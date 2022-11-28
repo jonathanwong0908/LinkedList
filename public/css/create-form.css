@@ -1,34 +1,45 @@
-.input-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.create-company-section {
+    place-items: center;
+    height: calc(100vh - 5rem);
+    width: 100vw;
 }
 
-.input-form input,
-.input-form textarea {
-    margin: .5rem 0 1.5rem 0;
-    width: 100%;
-    border: none;
+.create-company-form-container {
+    place-items: center;
+    padding: 3rem;
+    width: 45%;
     border-radius: 20px;
 }
 
-.input-form textarea {
-    resize: none;
-    padding: 1rem 1rem;
+.create-company-form {
+    flex-direction: column;
+    width: 100%;
+}
+
+.create-company-label {
+    margin-top: 1rem;
+}
+
+.create-company-input,
+.create-company-textarea {
+    margin-top: .5rem;
+    border-radius: 20px;
+}
+
+.create-company-input {
+    padding: .5rem 1rem;
+}
+
+.create-company-textarea {
+    padding: 1rem;
     height: 10rem;
-    width: 100%;
+    border: none;
 }
 
-.create-button {
-    width: 30%;
-    margin-top: 2rem;
+.create-company-button {
     align-self: center;
-}
-
-.company-name-input {
-    width: 100%;
-}
-
-.hidden {
-    display: none;
+    margin-top: 2.5rem;
+    padding: .3rem;
+    width: 30%;
+    border-radius: 20px;
 }

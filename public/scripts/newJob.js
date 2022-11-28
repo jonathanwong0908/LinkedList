@@ -1,7 +1,7 @@
-let selectLanguageButtons = document.querySelectorAll(".select-language-button");
+let selectLanguageButtons = document.querySelectorAll(".language-button");
 const requiredLanguageContainer = document.querySelector(".required-language-button-container");
 let selectedLanguageButtons = document.querySelectorAll(".selected-language-button");
-const languageTextarea = document.querySelector(".language-textarea");
+const languageTextarea = document.querySelector(".selected-language-textarea");
 const searchInput = document.querySelector(".search-language-input");
 
 searchInput.addEventListener("input", (event) => {
@@ -39,13 +39,13 @@ selectLanguageButtons.forEach(button => {
         console.log(languageTextarea.value);
 
         selectedLanguageButtons = document.querySelectorAll(".selected-language-button")
-        selectedLanguageButtons.forEach(button => {
-            button.addEventListener("click", (event) => {
+        selectedLanguageButtons.forEach(selectedButton => {
+            selectedButton.addEventListener("click", (event) => {
                 event.preventDefault();
-                const languageName = button.innerText;
+                const languageName = selectedButton.innerText;
                 languageTextarea.value = removeLanguageFromText(languageTextarea.value, languageName);
                 console.log(languageTextarea.value);
-                button.remove();
+                selectedButton.remove();
             })
         })
     })
