@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 
-const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 const businessRoutes = require("./routes/business");
 
 mongoose.connect("mongodb://localhost/LinkedList");
@@ -28,12 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-app.use("/auth", authRoutes);
+app.use(userRoutes);
 app.use("/business", businessRoutes);
-
-app.get("/", (req, res) => {
-    console.log(req.isAuthenticated());
-    res.render("main");
-})
 
 app.listen(3000);

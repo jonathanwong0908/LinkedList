@@ -43,3 +43,33 @@
     width: 30%;
     border-radius: 20px;
 }
+
+/* user profile creation */
+.create-profile-section {
+    place-items: center;
+    width: 100vw;
+}
+
+.create-profile-form-container {
+    place-items: center;
+    margin: 5rem 0;
+    padding: 3rem;
+    width: 55%;
+    border-radius: 20px;
+}
+
+.name-input-container {
+    justify-content: space-between;
+}
+
+.name-input-container input {
+    width: 100%;
+}
+
+.name-input {
+    width: 45%;
+}
+
+.experience-textarea {
+    margin-bottom: 1rem;
+}

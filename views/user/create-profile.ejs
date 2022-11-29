@@ -1,0 +1,55 @@
+<%- include("../includes/head.ejs") %>
+<title>Create Business Profile</title>
+<link rel="stylesheet" href="/css/create-job.css">
+<link rel="stylesheet" href="/css/create-form.css">
+<script src="/scripts/newJob.js" defer></script>
+</head>
+
+<body class="ff-primary">
+    <%- include("../includes/navigation.ejs") %>
+    <section class="create-profile-section grid bg-primary-300">
+        <div class="create-profile-form-container grid bg-neutral-100">
+            <h2 class="form-title">Create profile</h2>
+            <form action="/create-profile" class="create-company-form flex" method="POST">
+                <div class="name-input-container flex">
+                    <div class="name-input grid">
+                        <label for="userFirstName" class="create-company-label text-neutral-500">First Name</label>
+                        <input type="text" name="userFirstName"
+                            class="create-company-input company-name-input bg-neutral-200" required>
+                    </div>
+                    <div class="name-input grid">
+                        <label for="userLastName" class="create-company-label text-neutral-500">Last Name</label>
+                        <input type="text" name="userLastName"
+                            class="create-company-input company-name-input bg-neutral-200" required>
+                    </div>
+                </div>
+                <label for="userExperience" class="create-company-label text-neutral-500">Experience</label>
+                <textarea name="userExperience"
+                    class="create-company-textarea experience-textarea bg-neutral-200"></textarea>
+
+                <div class="language-area flex">
+                    <div class="selected-language-container">
+                        <label for="languages" class="create-job-label">Proficient Language(s)</label>
+                        <textarea name="languages"
+                            class="create-job-textarea selected-language-textarea text-neutral-200" readonly></textarea>
+
+                        <div class="required-language-button-container"></div>
+                    </div>
+                    <div class="search-language-area flex">
+                        <label for="search-bar" class="create-job-label">Search Language</label>
+                        <input type="search" class="create-job-input search-language-input">
+
+                        <div class="language-container bg-neutral-200 flex">
+                            <% languages.forEach(language => { %>
+                            <button class="bg-primary-300 fs-400 language-button"><%= language.name %></button>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <button class="create-company-button bg-primary-500 text-neutral-100 fw-bold">Save</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        lowercase: true
+        lowercase: true,
+        unique: true
     },
     password: {
         type: String
@@ -23,6 +24,12 @@ const userSchema = new mongoose.Schema({
     profile_completed: {
         type: Boolean,
         default: false
+    },
+    language: {
+        type: [String]
+    },
+    experience: {
+        type: String
     },
     created_at: {
         type: Date,
