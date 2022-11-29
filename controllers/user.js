@@ -10,8 +10,8 @@ exports.getSignup = (req, res) => {
     res.render("user/signup");
 }
 
-exports.getIndex = (req, res) => {
-    res.render("user/jobs");
+exports.getIndex = async (req, res) => {
+    res.redirect("/jobs");
 }
 
 exports.postCreateProfile = async (req, res) => {
@@ -55,6 +55,11 @@ exports.getJobs = async (req, res) => {
         title: "Jobs",
         user
     });
+}
+
+exports.postFilterJobs = async (req, res) => {
+    console.log(req.body);
+    res.redirect("/");
 }
 
 exports.getLogout = (req, res) => {

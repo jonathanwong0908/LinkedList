@@ -1,0 +1,144 @@
+.job-dashboard-section {
+    place-items: center;
+}
+
+.job-dashboard-container {
+    flex-direction: column;
+    margin: 5rem 0;
+    padding: 2.5rem;
+    width: 60%;
+    border-radius: 20px;
+}
+
+.job-dashboard-title {
+    margin-bottom: 2rem;
+}
+
+.job-filter-button-container {
+    justify-content: space-between;
+    margin: 1rem 0 3rem 0;
+    width: 100%;
+}
+
+.filter-button {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1.5rem;
+    width: 10rem;
+    border-radius: 20px;
+    color: var(--clr-neutral-500);
+    background-color: var(--clr-primary-300);
+}
+
+.search-button {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.language-selector-button,
+.salary-selector-button {
+    margin-right: 2rem
+}
+
+/* language filter popup */
+.language-filter-container {
+    position: relative;
+}
+
+.filter-popup {
+    z-index: 1;
+    position: absolute;
+    top: 3.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--clr-primary-500);
+    border-radius: 20px;
+}
+
+.language-input-container .language-checkbox-container:not(:last-child) {
+    margin-bottom: .5rem;
+}
+
+.search-language-input {
+    margin-bottom: 1rem;
+}
+
+.search-language-input,
+.min-salary-input {
+    padding: .5rem 1rem;
+    border-radius: 20px;
+}
+
+.language-checkbox-container {
+    justify-content: space-between;
+    padding: .2rem 1rem;
+    border-radius: 20px;
+}
+
+/* salary filter popup */
+.salary-filter-container {
+    position: relative;
+}
+
+/* job container */
+.job-container {
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.company-title {
+    margin-bottom: .5rem;
+}
+
+.job-utility-container {
+    width: 50%;
+}
+
+.match-rate-container {
+    place-items: center;
+    margin-right: 2rem;
+    width: 100%;
+}
+
+.job-button-container {
+    gap: 1rem;
+    width: 70%;
+}
+
+.job-button {
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1.25rem;
+    border-radius: 20px;
+}
+
+.match-percentage-indicator {
+    position: relative;
+    place-items: center;
+    margin-top: .5rem;
+    height: 4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(hsl(43 88% 60%) 3.6deg, hsl(42, 89%, 89%) 0deg);
+}
+
+.match-percentage-indicator::before {
+    content: "";
+    position: absolute;
+    height: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.match-percentage {
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}

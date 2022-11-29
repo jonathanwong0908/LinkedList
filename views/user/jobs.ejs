@@ -1,17 +1,77 @@
 <%- include("../includes/head.ejs") %>
-<!-- <link rel="stylesheet" href="/css/business-dashboard.css"> -->
-<script src="/scripts/deleteJob.js" defer></script>
+<link rel="stylesheet" href="/css/home.css">
+<script src="/scripts/jobList.js" defer></script>
 <title><%= title %></title>
 </head>
 
 <body class="ff-primary bg-primary-300">
     <%- include("../includes/logged-in-navigation.ejs") %>
     <section class="job-dashboard-section grid">
-        <div class="job-dashboard-container">
-            <h1 class="job-dashboard-title, fw-semi-bold text-neutral-500 fs-700">Programming Jobs</h1>
-            <div class="job-container">
-                <h3 class="job-title fw-semi-bold text-neutral-500">sample job</h3>
-                <h4 class="company-title fw-regular text-neutral-400">company</h4>
+        <div class="job-dashboard-container flex bg-neutral-100">
+            <h1 class="job-dashboard-title fw-semi-bold text-neutral-500 fs-700">Programming Jobs</h1>
+            <form action="/filter-jobs" method="POST" class="job-filter-form">
+                <label for="" class="job-filter-label text-neutral-500 fs-600">Filter <i
+                        class="fa-solid fa-filter"></i></label>
+                <div class="job-filter-button-container flex">
+                    <div class="filter-utility-container flex">
+                        <div class="language-filter-container">
+                            <button class="language-selector-button filter-button flex">Language <i
+                                    class="fa-solid fa-code"></i></button>
+                            <div class="filter-popup language-input-container grid bg-neutral-100">
+                                <input type="search" class="search-language-input bg-primary-300" placeholder="Search">
+                                <div class="language-checkbox-container flex bg-primary-300">
+                                    <label for="javascript">javascript</label>
+                                    <input type="checkbox" name="javascript">
+                                </div>
+                                <div class="language-checkbox-container flex bg-primary-300">
+                                    <label for="react">react</label>
+                                    <input type="checkbox" name="react">
+                                </div>
+                                <div class="language-checkbox-container flex bg-primary-300">
+                                    <label for="nodejs">nodejs</label>
+                                    <input type="checkbox" name="nodejs">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="salary-filter-container">
+                            <button class="filter-button salary-selector-button flex">Salary <i
+                                    class="fa-solid fa-dollar-sign"></i></button>
+                            <div class="filter-popup salary-input-container grid bg-neutral-100">
+                                <input name="minSalary" type="number" class="min-salary-input bg-primary-300"
+                                    placeholder="Min salary">
+                            </div>
+                        </div>
+                        <button class="search-button bg-primary-300"><i
+                                class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="sort-utility-container">
+                        <div class="sort-by">
+                            <button class="filter-button flex">Sort by <i
+                                    class="fa-regular fa-square-caret-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="job-container flex bg-primary-300">
+                <div class="job-main-information-container">
+                    <h3 class="job-title fw-semi-bold text-neutral-500 fs-700">Software Engineer</h3>
+                    <h4 class="company-title fw-regular text-neutral-400 fs-600">company</h4>
+                    <p class="salary-display text-neutral-400">$20k - $30k HKD</p>
+                </div>
+                <div class="job-utility-container flex">
+                    <div class="match-rate-container grid">
+                        <p class="text-neutral-500">Match Rate</p>
+                        <div class="match-percentage-indicator grid">
+                            <span class="match-percentage text-neutral-500">60%</span>
+                        </div>
+                    </div>
+                    <div class="job-button-container grid">
+                        <button class="save-job-button job-button flex bg-primary-500 text-neutral-100">Save<i
+                                class="fa-solid fa-bookmark"></i></button>
+                        <button class="apply-button job-button flex bg-primary-500 text-neutral-100">Apply<i
+                                class="fa-solid fa-clipboard"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

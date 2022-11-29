@@ -4,10 +4,7 @@ const businessController = require("../controllers/business");
 const router = express.Router();
 
 router.get("/",
-    businessController.checkAuth,
-    businessController.checkFirstLogin,
-    businessController.getBusiness
-);
+    businessController.checkAuth, businessController.checkFirstLogin, businessController.getBusiness);
 
 router.get("/login", businessController.getBusinessLogin);
 
@@ -17,19 +14,13 @@ router.get("/signup", businessController.getBusinessSignup);
 
 router.post("/signup", businessController.postBusinessSignup);
 
-router.post("/create-business",
-    businessController.checkAuth,
-    businessController.postCreateBusiness
-);
+router.post("/create-business", businessController.checkAuth, businessController.postCreateBusiness);
 
 router.get("/profile", businessController.checkAuth, businessController.getBusinessProfile);
 
 router.post("/edit-profile/:id", businessController.checkAuth, businessController.postEditBusiness);
 
-router.get("/new-job",
-    businessController.checkAuth,
-    businessController.getNewJob
-);
+router.get("/new-job", businessController.checkAuth, businessController.getNewJob);
 
 router.post("/create-job", businessController.checkAuth, businessController.postCreateJob);
 

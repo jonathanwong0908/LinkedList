@@ -74,7 +74,6 @@ exports.getNewJob = async (req, res) => {
 }
 
 exports.postCreateJob = async (req, res) => {
-    console.log(req.body.languages);
     const company = await Company.findOne({ user_id: req.user.id });
     let salaryNegotiable = false;
     if (req.body.salaryNegotiable === "on") {

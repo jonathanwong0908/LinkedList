@@ -25,6 +25,8 @@ router.post("/edit-profile", userController.checkAuth, userController.postEditPr
 
 router.get("/jobs", userController.checkAuth, userController.checkFirstLogin, userController.getJobs);
 
+router.post("/filter-jobs", userController.checkAuth, userController.postFilterJobs);
+
 router.get("/logout", userController.getLogout);
 
 module.exports = router;

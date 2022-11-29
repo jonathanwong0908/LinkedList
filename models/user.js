@@ -31,6 +31,12 @@ const userSchema = new mongoose.Schema({
     experience: {
         type: String
     },
+    saved_jobs: {
+        type: [String]
+    },
+    applied_jobs: {
+        type: [String]
+    },
     created_at: {
         type: Date,
         default: () => Date.now(),
