@@ -43,6 +43,24 @@ exports.postCreateBusiness = async (req, res) => {
     res.redirect("/business");
 }
 
+exports.getBusinessProfile = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    const company = await Company.findOne({ user_id: req.user.id });
+    res.render("business/business-profile", {
+        title: `${company.name} Profile`,
+        user: user,
+        company: company
+    });
+}
+
+exports.postEditBusiness = async (req, res) => {
+    const company = await Company.findById(req.params.id);
+    company.name = capitalizeFirstLetter(req.body.companyName);
+    company.description = req.body.companyDescription;
+    await company.save();
+    res.redirect("/business");
+}
+
 exports.getNewJob = async (req, res) => {
     const user = req.user;
     const company = await Company.findOne({ user_id: user.id });

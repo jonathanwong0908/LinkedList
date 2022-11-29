@@ -22,7 +22,9 @@ router.post("/create-business",
     businessController.postCreateBusiness
 );
 
-router.get("/logout", businessController.getLogout);
+router.get("/profile", businessController.checkAuth, businessController.getBusinessProfile);
+
+router.post("/edit-profile/:id", businessController.checkAuth, businessController.postEditBusiness);
 
 router.get("/new-job",
     businessController.checkAuth,
@@ -37,4 +39,5 @@ router.post("/edit-job/:id", businessController.checkAuth, businessController.po
 
 router.post("/delete-job/:id", businessController.checkAuth, businessController.postDeleteJob);
 
+router.get("/logout", businessController.getLogout);
 module.exports = router;
