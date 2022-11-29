@@ -1,0 +1,137 @@
+body {
+    position: relative;
+}
+
+.company-dashboard-section {
+    place-items: center;
+}
+
+.company-dashboard-container {
+    flex-direction: column;
+    margin: 5rem 0;
+    padding: 2.5rem;
+    width: 60%;
+    border-radius: 20px;
+}
+
+.company-title {
+    margin-bottom: 2rem;
+}
+
+.job-container {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.75rem;
+    border-radius: 20px;
+}
+
+.company-dashboard-container .job-container:not(:last-child) {
+    margin-bottom: 2.25rem;
+}
+
+.job-title {
+    max-width: 60%;
+}
+
+.job-utility-container {
+    justify-content: space-between;
+    width: 25%;
+}
+
+.job-applicant-container {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: .3rem;
+}
+
+.applicant-count {
+    align-self: center;
+}
+
+.view-applicant-button {
+    justify-content: center;
+    align-items: center;
+    padding: .1rem .75rem;
+    border-radius: 20px;
+}
+
+.view-applicant-button:hover,
+.view-applicant-button:focus {
+    background-color: var(--clr-primary-600);
+}
+
+.view-applicant-button i {
+    margin-left: .75rem;
+}
+
+.job-button-container {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.job-button {
+    place-items: center;
+    height: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.job-button:hover,
+.job-button:focus {
+    background-color: var(--clr-primary-600);
+}
+
+.delete-job-modal-container {
+    position: absolute;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 0%, .5);
+    z-index: 1;
+}
+
+.delete-job-modal {
+    padding: 3rem;
+    border-radius: 20px;
+}
+
+.delete-job-form {
+    flex-direction: column;
+}
+
+.modal-title {
+    margin-bottom: 3rem;
+}
+
+.modal-button-container {
+    justify-content: flex-end;
+}
+
+.modal-button {
+    margin-left: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 20px;
+}
+
+.delete-button {
+    background-color: hsl(0, 50%, 56%);
+}
+
+.delete-button:hover,
+.delete-button:focus {
+    background-color: hsl(0, 39%, 38%);
+}
+
+.cancel-button:hover,
+.cancel-button:focus {
+    background-color: var(--clr-primary-500);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}

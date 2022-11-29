@@ -2,7 +2,9 @@
 /* custom properties */
 /*                   */
 :root {
+    --clr-primary-600: rgb(186, 147, 49);
     --clr-primary-500: hsl(43 88% 60%);
+    --clr-primary-400: hsl(43, 98%, 75%);
     --clr-primary-300: hsl(47 70% 87%);
 
     --clr-neutral-900: hsl(0, 0%, 0%);
@@ -172,8 +174,16 @@ select {
 }
 
 /* text colors */
+.text-primary-600 {
+    color: var(--clr-primary-600);
+}
+
 .text-primary-500 {
     color: var(--clr-primary-500);
+}
+
+.text-primary-400 {
+    color: var(--clr-primary-400);
 }
 
 .text-primary-300 {
@@ -197,8 +207,16 @@ select {
 }
 
 /* background-colors */
+.bg-primary-600 {
+    background-color: var(--clr-primary-600);
+}
+
 .bg-primary-500 {
     background-color: var(--clr-primary-500);
+}
+
+.bg-primary-400 {
+    background-color: var(--clr-primary-400);
 }
 
 .bg-primary-300 {

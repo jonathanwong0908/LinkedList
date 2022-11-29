@@ -30,13 +30,10 @@ selectLanguageButtons.forEach(button => {
     button.addEventListener("click", (event) => {
         event.preventDefault();
         const language = button.innerText;
-        addSelectedLanguage(language);
-        if (languageTextarea.value) {
-            languageTextarea.value += `,${language}`;
-        } else {
-            languageTextarea.value = language;
+        const addValid = addSelectedLanguage(language);
+        if (addValid) {
+            languageTextarea.value ? languageTextarea.value += `,${language}` : languageTextarea.value = language;
         }
-        console.log(languageTextarea.value);
 
         selectedLanguageButtons = document.querySelectorAll(".selected-language-button")
         selectedLanguageButtons.forEach(selectedButton => {
@@ -51,6 +48,15 @@ selectLanguageButtons.forEach(button => {
     })
 })
 
+selectedLanguageButtons.forEach(button => {
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        const languageName = button.innerText;
+        languageTextarea.value = removeLanguageFromText(languageTextarea.value, languageName);
+        button.remove();
+    })
+})
+
 function removeLanguageFromText(string, selectedLanguage) {
     const languagesArray = string.split(",");
     for (let i = 0; i < languagesArray.length; i++) {
@@ -62,19 +68,14 @@ function removeLanguageFromText(string, selectedLanguage) {
 }
 
 function addSelectedLanguage(language) {
+    if (languageTextarea.value.includes(language)) {
+        return false;
+    }
     let button = document.createElement("button");
     let crossIcon = document.createElement("i");
     crossIcon.classList.add("fa-solid", "fa-xmark", "fa-icon");
     button.classList.add("flex", "selected-language-button", "fs-400", "text-neutral-500", "bg-primary-300");
     button.append(language, crossIcon);
     requiredLanguageContainer.append(button);
+    return true;
 }
-
-// function unhideButton(language) {
-//     let hiddenItems = document.querySelectorAll(".hidden");
-//     hiddenItems.forEach(item => {
-//         if (item.innerText === language) {
-//             item.classList.remove("hidden");
-//         }
-//     })
-// }

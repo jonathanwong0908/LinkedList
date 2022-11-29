@@ -18,9 +18,11 @@ exports.getBusinessSignup = (req, res) => {
 
 exports.getBusiness = async (req, res) => {
     const company = await Company.findOne({ user_id: req.user.id });
-    res.render("business/business-main", {
+    const jobs = await Job.find({ company_id: company.id });
+    res.render("business/business-dashboard", {
         user: req.user,
-        company: company
+        company: company,
+        jobs: jobs
     });
 }
 
@@ -71,18 +73,47 @@ exports.postCreateJob = async (req, res) => {
         company_id: company.id
     })
     newJob.language = selectedLanguagesArray;
-    console.log(newJob);
     await newJob.save();
-    res.redirect("/business/business-dashboard");
+    res.redirect("/business");
 }
 
-exports.getCompanyDashBoard = async (req, res) => {
-    const user = req.user;
-    const company = await Company.findOne({ user_id: user.id })
-    res.render("business/business-dashboard", {
+exports.getEditJob = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    const company = await Company.findOne({ user_id: user.id });
+    const job = await Job.findById(req.params.id);
+    const languages = await Language.find();
+    const jobLanguageString = job.language.join();
+    res.render("business/business-edit-job", {
+        title: "Edit job",
         user: user,
-        company: company
-    });
+        company: company,
+        job: job,
+        languages: languages,
+        jobLanguageString: jobLanguageString
+    })
+}
+
+exports.postEditJob = async (req, res) => {
+    let salaryNegotiable = false;
+    if (req.body.salaryNegotiable === "on") {
+        salaryNegotiable = true;
+    }
+    const job = await Job.findById(req.params.id);
+    const selectedLanguagesArray = splitStringToArray(req.body.languages);
+    job.job_title = req.body.jobTitle;
+    job.job_description = req.body.jobDescription;
+    job.job_requirement = req.body.jobRequirement;
+    job.min_salary = req.body.minSalary;
+    job.max_salary = req.body.maxSalary;
+    job.salary_negotiable = salaryNegotiable;
+    job.language = selectedLanguagesArray;
+    await job.save();
+    res.redirect("/business");
+}
+
+exports.postDeleteJob = async (req, res) => {
+    await Job.findByIdAndDelete(req.params.id);
+    res.redirect("/business")
 }
 
 exports.getLogout = (req, res) => {

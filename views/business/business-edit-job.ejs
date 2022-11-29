@@ -1,0 +1,70 @@
+<%- include("../includes/head.ejs") %>
+<title><%= title %></title>
+<link rel="stylesheet" href="/css/create-job.css">
+<script src="/scripts/newJob.js" defer></script>
+</head>
+
+<body class="ff-primary bg-primary-300">
+    <%- include("../includes/logged-in-navigation.ejs") %>
+    <section class="create-job-section grid">
+        <div class="create-job-container bg-neutral-100 flex">
+            <h2 class="form-title create-job-title">Edit job</h2>
+            <form action="/business/edit-job/<%= job.id %>" class="create-job-form flex" method="POST">
+                <label for="jobTitle" class="create-job-label">Job Title</label>
+                <input type="text" name="jobTitle" class="create-job-input" value="<%= job.job_title %>" required>
+
+                <label for="jobDescription" class="create-job-label">Job Description</label>
+                <textarea name="jobDescription" class="create-job-textarea"><%= job.job_description %></textarea>
+
+                <label for="jobRequirement" class="create-job-label">Job Requirement</label>
+                <textarea name="jobRequirement" class=" create-job-textarea"><%= job.job_requirement %></textarea>
+
+                <label class="create-job-label salary-label">Salary</label>
+                <div class="salary-area flex">
+                    <input type="number" name="minSalary" min="1" class="create-job-input salary-input"
+                        value="<%= job.min_salary %>" required placeholder="min">
+
+                    <input type="number" name="maxSalary" class="create-job-input salary-input"
+                        value="<%= job.max_salary %>" required placeholder="max">
+
+                    <div class="salary-negotiable-checkbox flex">
+                        <input type="checkbox" name="salaryNegotiable" class="salary-checkbox"
+                            <%= job.salary_negotiable ? "checked" : "" %>>
+                        <label for="salaryNegotiable" class="create-job-label">Salary Negotiable</label>
+                    </div>
+                </div>
+
+                <div class="language-area flex">
+                    <div class="selected-language-container">
+                        <label for="languages" class="create-job-label">Required Language(s)</label>
+                        <textarea name="languages"
+                            class="create-job-textarea selected-language-textarea text-neutral-200"
+                            readonly><%= jobLanguageString %></textarea>
+
+                        <div class="required-language-button-container">
+                            <% job.language.forEach(language => { %>
+                            <button class="flex selected-language-button fs-400 text-neutral-500 bg-primary-300">
+                                <%= language %>
+                                <i class="fa-solid fa-xmark fa-icon"></i>
+                            </button>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <div class="search-language-area flex">
+                        <label for="search-bar" class="create-job-label">Search Language</label>
+                        <input type="search" class="create-job-input search-language-input">
+
+                        <div class="language-container bg-neutral-200 flex">
+                            <% languages.forEach(language => { %>
+                            <button class="bg-primary-300 fs-400 language-button"><%= language.name %></button>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <button class="create-job-button bg-primary-500 text-neutral-100 fw-bold" type="submit">Save</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

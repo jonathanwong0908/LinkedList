@@ -31,6 +31,10 @@ router.get("/new-job",
 
 router.post("/create-job", businessController.checkAuth, businessController.postCreateJob);
 
-router.get("/dashboard", businessController.checkAuth, businessController.getCompanyDashBoard);
+router.get("/edit-job/:id", businessController.checkAuth, businessController.getEditJob);
+
+router.post("/edit-job/:id", businessController.checkAuth, businessController.postEditJob);
+
+router.post("/delete-job/:id", businessController.checkAuth, businessController.postDeleteJob);
 
 module.exports = router;

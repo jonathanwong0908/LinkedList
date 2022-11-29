@@ -1,8 +1,8 @@
 <header class="primary-header grid bg-primary-500">
     <nav class="primary-navbar flex">
         <div class="nav-left flex">
-            <a class="logo fs-800 text-neutral-100 fw-semi-bold" href="/">LinkedList</a>
             <% if (user && user.user_type === "employer") { %>
+            <a class="logo fs-800 text-neutral-100 fw-semi-bold" href="/business">LinkedList</a>
             <a href="/business/new-job"
                 class="nav-button new-job-button fs-600 fw-semi-bold bg-neutral-100 text-primary-500">New
                 Job</a>
@@ -19,8 +19,8 @@
                 class="sr-only">Menu</span></button>
 
         <ul class="nav-right flex">
-            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600"
-                    href="/business/dashboard"><%= company.name %> Jobs</a>
+            <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/business/"><%= company.name %>
+                    Jobs</a>
             </li>
             <% if(user && user.user_type === "employer") { %>
             <li class="nav-button"><a class="text-neutral-100 fw-semi-bold fs-600" href="/">Company Profile</a></li>

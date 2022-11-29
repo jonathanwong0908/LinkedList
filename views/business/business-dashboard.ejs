@@ -1,13 +1,50 @@
 <%- include("../includes/head.ejs") %>
 <link rel="stylesheet" href="/css/business-dashboard.css">
+<script src="/scripts/deleteJob.js" defer></script>
 <title>dashboard</title>
 </head>
 
 <body class="ff-primary bg-primary-300">
     <%- include("../includes/logged-in-navigation.ejs") %>
-    <section class="company-dashboard-section">
-        <div class="company-dashboard-container bg-neutral-100">
-            <h1>hi</h1>
+    <section class="company-dashboard-section grid">
+        <div class="company-dashboard-container bg-neutral-100 flex">
+            <h1 class="company-title fw-semi-bold text-neutral-500 fs-700"><%= company.name %> Jobs</h1>
+            <% if (jobs.length === 0) { %>
+            <div class="job-container">
+                <h2 class="fs-700 text-neutral-500">No jobs yet</h2>
+            </div>
+            <% } %>
+            <% jobs.forEach(job => { %>
+            <div class="job-container flex bg-primary-300">
+                <h3 class="job-title text-neutral-500 fw-semi-bold fs-700"><%= job.job_title %></h3>
+                <div class="job-utility-container flex">
+                    <div class="job-applicant-container flex">
+                        <p>Applicant(s)</p>
+                        <p class="applicant-count fs-700"><%= job.applicant.length %></p>
+                        <button class="view-applicant-button flex bg-primary-500 text-neutral-100">View <i
+                                class="fa-solid fa-eye text-neutral-100"></i></button>
+                    </div>
+                    <div class="job-button-container flex">
+                        <a href="/business/edit-job/<%= job.id %>" class="grid job-button bg-primary-500"><i
+                                class="text-neutral-100 fa-solid fa-pen"></i></a>
+                        <button class="delete-job-button grid job-button bg-primary-500"><i
+                                class="text-neutral-100 fa-sharp fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="delete-job-modal-container grid hidden">
+                <div class="delete-job-modal bg-neutral-100">
+                    <form action="/business/delete-job/<%= job.id %>" method="POST" class="delete-job-form flex">
+                        <h3 class="modal-title text-neutral-500 fw-semi-bold">Are you sure you want to delete this job?
+                        </h3>
+                        <div class="modal-button-container flex">
+                            <button class="modal-button cancel-button text-neutral-500 bg-primary-300">Cancel</button>
+                            <button class="modal-button delete-button text-neutral-100" type="submit">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <% }) %>
         </div>
     </section>
 </body>
