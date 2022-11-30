@@ -10,6 +10,10 @@
     border-radius: 20px;
 }
 
+.job-dashboard-container>.job-container:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
 .job-dashboard-title {
     margin-bottom: 2rem;
 }
@@ -52,8 +56,11 @@
     position: absolute;
     top: 3.5rem;
     padding: 1.5rem;
+    max-height: 10rem;
     border: 1px solid var(--clr-primary-500);
     border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .language-input-container .language-checkbox-container:not(:last-child) {
@@ -72,8 +79,13 @@
 
 .language-checkbox-container {
     justify-content: space-between;
+    align-items: center;
     padding: .2rem 1rem;
     border-radius: 20px;
+}
+
+.language-checkbox-input {
+    transform: scale(1.2);
 }
 
 /* salary filter popup */
@@ -123,7 +135,7 @@
     height: 4rem;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: conic-gradient(hsl(43 88% 60%) 3.6deg, hsl(42, 89%, 89%) 0deg);
+    background: conic-gradient(hsl(43 88% 60%) 216deg, hsl(42, 89%, 89%) 0deg);
 }
 
 .match-percentage-indicator::before {
