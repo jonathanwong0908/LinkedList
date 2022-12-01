@@ -1,0 +1,60 @@
+<%- include("../includes/head.ejs") %>
+<title><%= title %></title>
+<link rel="stylesheet" href="/css/job-info.css">
+</head>
+
+<body class="ff-primary bg-primary-300">
+    <%- include("../includes/logged-in-navigation.ejs") %>
+    <section class="job-info-section grid">
+        <div class="job-info-container bg-neutral-100 flex">
+            <div class="job-title-container job-info-section-container flex">
+                <div class="title-company-container grid">
+                    <h1 class="job-title text-neutral-500 fw-semi-bold fs-800"><%= job.job_title %></h1>
+                    <h2 class="company-title text-neutral-400 fw-regular fs-600"><%= job.company_id.name %></h3>
+                </div>
+                <div class="job-title-button-container flex">
+                    <form action="/save-job/" method="POST" class="flex">
+                        <button type="submit" class="job-button save-button flex bg-primary-500 text-neutral-100">Save<i
+                                class="fa-solid fa-bookmark"></i></button>
+                    </form>
+                    <form action="/apply-job/" method="POST" class="flex">
+                        <button type="submit" class="job-button flex bg-primary-500 text-neutral-100">apply<i
+                                class="fa-solid fa-clipboard"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="salary-container job-info-section-container">
+                <h3 class="job-container-title">Salary</h3>
+                <p class="fs-600 text-neutral-500">$<%= job.min_salary %> - $<%= job.max_salary %></p>
+            </div>
+            <div class="required-language-container job-info-section-container">
+                <h3 class="job-container-title">Required language</h3>
+                <div class="language-container">
+                    <% job.language.forEach(language => { %>
+                    <span class="language-tag text-neutral-500 bg-primary-300"><%= language %></span>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="job-description-container job-info-section-container">
+                <h3 class="job-container-title">Job description</h3>
+                <textarea class="bg-neutral-200" readonly><%= job.job_description %></textarea>
+            </div>
+            <div class="job-requirement-container job-info-section-container">
+                <h3 class="job-container-title">Job requirement</h3>
+                <textarea class="bg-neutral-200" readonly><%= job.job_requirement %></textarea>
+            </div>
+            <div class="save-apply-job-container job-info-section-container flex">
+                <form action="/save-job/<%= job.id %>" method="POST" class="flex">
+                    <button type="submit" class="job-button flex bg-primary-500 text-neutral-100">Save<i
+                            class="fa-solid fa-bookmark"></i></button>
+                </form>
+                <form action="/apply-job/<%= job.id %>" method="POST" class="flex">
+                    <button type="submit" class="job-button flex bg-primary-500 text-neutral-100">apply<i
+                            class="fa-solid fa-clipboard"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

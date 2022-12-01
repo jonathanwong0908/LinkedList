@@ -29,6 +29,14 @@ router.post("/filter-jobs", userController.checkAuth, userController.postFilterJ
 
 router.post("/save-job/:id", userController.checkAuth, userController.postSaveJob);
 
+router.get("/job-info/:id", userController.checkAuth, userController.getJobInfo);
+
+router.post("/apply-job/:id", userController.checkAuth, userController.postApplyJob);
+
+router.get("/saved-jobs", userController.checkAuth, userController.getSavedJobs);
+
+router.post("/search-job", userController.checkAuth, userController.postSearchJob);
+
 router.get("/logout", userController.getLogout);
 
 module.exports = router;

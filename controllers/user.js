@@ -60,6 +60,7 @@ exports.getJobs = async (req, res) => {
     })
     res.render("user/jobs", {
         title: "Jobs",
+        pageTitle: "Programming Jobs",
         user,
         languages,
         jobs,
@@ -81,7 +82,8 @@ exports.postFilterJobs = async (req, res) => {
             matchingRates.push(makeMatchingRates(user, job));
         })
         return res.render("user/jobs", {
-            title: "jobs",
+            title: "Jobs",
+            pageTitle: "Programming Jobs",
             user,
             languages,
             jobs,
@@ -100,7 +102,8 @@ exports.postFilterJobs = async (req, res) => {
         matchingRates.push(makeMatchingRates(user, job));
     })
     res.render("user/jobs", {
-        title: "jobs",
+        title: "Jobs",
+        pageTitle: "Programming Jobs",
         user,
         languages,
         jobs,
@@ -117,6 +120,68 @@ exports.postSaveJob = async (req, res) => {
         await user.save();
     }
     res.redirect("/");
+}
+
+exports.getJobInfo = async (req, res) => {
+    const jobId = req.params.id;
+    const job = await Job.findById(jobId).populate("company_id");
+    res.render("user/job-info", {
+        title: "Job Information",
+        user: req.user,
+        job
+    });
+}
+
+exports.postApplyJob = async (req, res) => {
+    const jobId = req.params.id;
+    const userId = req.user.id;
+    const job = await Job.findById(jobId);
+    if (job.applicant.includes(userId)) {
+        return res.redirect("/");
+    }
+    job.applicant.push(userId);
+    await job.save();
+    const user = await User.findById(userId);
+    user.applied_jobs.push(jobId);
+    await user.save();
+    res.redirect("/");
+}
+
+exports.getSavedJobs = async (req, res) => {
+    const user = req.user;
+    const languages = await Language.find();
+    const matchingRates = [];
+    const jobs = await Job.find({ "id": { "$in": user.saved_jobs } });
+    jobs.forEach(job => {
+        matchingRates.push(makeMatchingRates(user, job));
+    })
+    res.render("user/jobs", {
+        title: "Saved Jobs",
+        pageTitle: "Saved Jobs",
+        jobs,
+        user,
+        languages,
+        matchingRates
+    })
+}
+
+exports.postSearchJob = async (req, res) => {
+    const user = req.user;
+    const searchTerm = req.body.searchTerm;
+    const languages = await Language.find();
+    const jobs = await Job.find({ "job_title": { "$regex": searchTerm, $options: "i" } });
+    const matchingRates = [];
+    jobs.forEach(job => {
+        matchingRates.push(makeMatchingRates(user, job));
+    })
+    res.render("user/jobs", {
+        title: "Search Jobs",
+        pageTitle: `${searchTerm} Related Programming Jobs`,
+        user,
+        jobs,
+        languages,
+        matchingRates
+    });
 }
 
 exports.getLogout = (req, res) => {

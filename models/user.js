@@ -36,7 +36,8 @@ const userSchema = new mongoose.Schema({
         ref: "Job"
     },
     applied_jobs: {
-        type: [String]
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Job"
     },
     created_at: {
         type: Date,

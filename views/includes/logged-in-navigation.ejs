@@ -8,8 +8,8 @@
                 Job</a>
             <% } else { %>
             <a class="logo fs-800 text-neutral-100 fw-semi-bold" href="/jobs">LinkedList</a>
-            <form class="nav-search-bar" action="">
-                <input class="nav-search-bar-input" type="text" placeholder="Search Jobs">
+            <form class="nav-search-bar" action="/search-job" method="POST">
+                <input class="nav-search-bar-input" type="text" placeholder="Search Jobs" name="searchTerm">
                 <button class="nav-search-bar-button bg-neutral-100" type="submit"><i
                         class="fa-solid fa-magnifying-glass text-neutral-100"></i></button>
             </form>

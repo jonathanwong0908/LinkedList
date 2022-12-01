@@ -8,7 +8,7 @@
     <%- include("../includes/logged-in-navigation.ejs") %>
     <section class="job-dashboard-section grid">
         <div class="job-dashboard-container flex bg-neutral-100">
-            <h1 class="job-dashboard-title fw-semi-bold text-neutral-500 fs-700">Programming Jobs</h1>
+            <h1 class="job-dashboard-title fw-semi-bold text-neutral-500 fs-700"><%= pageTitle %></h1>
             <form action="/filter-jobs" method="POST" class="job-filter-form">
                 <label for="" class="job-filter-label text-neutral-500 fs-600">Filter <i
                         class="fa-solid fa-filter"></i></label>
@@ -69,16 +69,16 @@
                                 class="save-job-button job-button flex bg-primary-500 text-neutral-100">Save<i
                                     class="fa-solid fa-bookmark"></i></button>
                         </form>
-                        <form action="/apply-job/<%= jobs[i].id %>" method="post" class="flex">
+                        <form action="/job-info/<%= jobs[i].id %>" method="GET" class="flex">
                             <button type="submit"
-                                class="apply-button job-button flex bg-primary-500 text-neutral-100">Apply<i
-                                    class="fa-solid fa-clipboard"></i></button>
+                                class="apply-button job-button flex bg-primary-500 text-neutral-100">More Info<i
+                                    class="fa-solid fa-arrow-right"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
             <% }} else { %>
-            <h1>No matching Jobs</h1>
+            <h1>No Jobs</h1>
             <% } %>
         </div>
     </section>
