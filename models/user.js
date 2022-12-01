@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     saved_jobs: {
-        type: [mongoose.SchemaTypes.ObjectId]
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Job"
     },
     applied_jobs: {
         type: [String]

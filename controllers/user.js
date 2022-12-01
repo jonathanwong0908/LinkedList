@@ -108,6 +108,17 @@ exports.postFilterJobs = async (req, res) => {
     })
 }
 
+exports.postSaveJob = async (req, res) => {
+    const jobId = req.params.id;
+    const user = await User.findById(req.user.id);
+    const exists = user.saved_jobs.includes(jobId);
+    if (!exists) {
+        user.saved_jobs.push(jobId);
+        await user.save();
+    }
+    res.redirect("/");
+}
+
 exports.getLogout = (req, res) => {
     req.logout((err) => {
         if (err) return err;
