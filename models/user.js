@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     saved_jobs: {
-        type: [String]
+        type: [mongoose.SchemaTypes.ObjectId]
     },
     applied_jobs: {
         type: [String]

@@ -121,9 +121,14 @@
     width: 70%;
 }
 
+.job-button-container form {
+    width: 100%;
+}
+
 .job-button {
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: .5rem 1.25rem;
     border-radius: 20px;
 }

@@ -1,7 +1,7 @@
 const passportSetup = require("../config/passportSetup");
 const User = require("../models/user");
 const Language = require("../models/language");
-const job = require("../models/job");
+const Job = require("../models/job");
 
 exports.getLogin = (req, res) => {
     res.render("user/login");
@@ -53,13 +53,11 @@ exports.postEditProfile = async (req, res) => {
 exports.getJobs = async (req, res) => {
     const user = await User.findById(req.user.id);
     const languages = await Language.find();
-    const jobs = await job.find().populate("company_id");
+    const jobs = await Job.find().populate("company_id");
     const matchingRates = [];
     jobs.forEach(job => {
         matchingRates.push(makeMatchingRates(user, job));
     })
-    console.log(jobs);
-    console.log(matchingRates);
     res.render("user/jobs", {
         title: "Jobs",
         user,
@@ -71,7 +69,43 @@ exports.getJobs = async (req, res) => {
 
 exports.postFilterJobs = async (req, res) => {
     console.log(req.body);
-    res.redirect("/");
+    let body = req.body;
+    const user = req.user;
+    let minSalary = +body.minSalary;
+    const matchingRates = [];
+    const languages = await Language.find();
+    if (Object.keys(body).length === 1) {
+        if (!minSalary) return res.redirect("/");
+        const jobs = await Job.find().where("min_salary").gt(minSalary);
+        jobs.forEach(job => {
+            matchingRates.push(makeMatchingRates(user, job));
+        })
+        return res.render("user/jobs", {
+            title: "jobs",
+            user,
+            languages,
+            jobs,
+            matchingRates
+        })
+    }
+
+    let selectedLanguages = Object.keys(body);
+    let indexOfMinSalary = selectedLanguages.indexOf("minSalary");
+    if (indexOfMinSalary !== -1) selectedLanguages.splice(indexOfMinSalary, 1);
+    const jobs = await Job
+        .find({ "language": { "$in": selectedLanguages } })
+        .where("min_salary").gt(minSalary);
+    console.log(jobs);
+    jobs.forEach(job => {
+        matchingRates.push(makeMatchingRates(user, job));
+    })
+    res.render("user/jobs", {
+        title: "jobs",
+        user,
+        languages,
+        jobs,
+        matchingRates
+    })
 }
 
 exports.getLogout = (req, res) => {

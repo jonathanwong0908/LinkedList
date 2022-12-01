@@ -33,7 +33,7 @@
                                     class="fa-solid fa-dollar-sign"></i></button>
                             <div class="filter-popup salary-input-container grid bg-neutral-100">
                                 <input name="minSalary" type="number" class="min-salary-input bg-primary-300"
-                                    placeholder="Min salary">
+                                    placeholder="Min salary" min="0">
                             </div>
                         </div>
                         <button class="search-button bg-primary-300"><i
@@ -41,13 +41,13 @@
                     </div>
                     <div class="sort-utility-container">
                         <div class="sort-by">
-                            <button class="filter-button flex">Sort by <i
-                                    class="fa-regular fa-square-caret-down"></i></button>
+                            <a href="/" class="filter-button flex">Clear filters <i
+                                    class="fa-solid fa-square-minus"></i></a>
                         </div>
                     </div>
                 </div>
             </form>
-            <% for (let i = 0; i < jobs.length; i++){ %>
+            <% if (jobs.length > 0) {for (let i = 0; i < jobs.length; i++){ %>
             <div class="job-container flex bg-primary-300">
                 <div class="job-main-information-container">
                     <h3 class="job-title fw-semi-bold text-neutral-500 fs-700"><%= jobs[i].job_title %></h3>
@@ -64,13 +64,21 @@
                         </div>
                     </div>
                     <div class="job-button-container grid">
-                        <button class="save-job-button job-button flex bg-primary-500 text-neutral-100">Save<i
-                                class="fa-solid fa-bookmark"></i></button>
-                        <button class="apply-button job-button flex bg-primary-500 text-neutral-100">Apply<i
-                                class="fa-solid fa-clipboard"></i></button>
+                        <form action="/save-job/<%= jobs[i].id %>" method="POST" class="flex">
+                            <button type="submit"
+                                class="save-job-button job-button flex bg-primary-500 text-neutral-100">Save<i
+                                    class="fa-solid fa-bookmark"></i></button>
+                        </form>
+                        <form action="/apply-job/<%= jobs[i].id %>" method="post" class="flex">
+                            <button type="submit"
+                                class="apply-button job-button flex bg-primary-500 text-neutral-100">Apply<i
+                                    class="fa-solid fa-clipboard"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
+            <% }} else { %>
+            <h1>No matching Jobs</h1>
             <% } %>
         </div>
     </section>
