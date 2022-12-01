@@ -30,5 +30,11 @@ router.post("/edit-job/:id", businessController.checkAuth, businessController.po
 
 router.post("/delete-job/:id", businessController.checkAuth, businessController.postDeleteJob);
 
+router.get("/view-applicants/:jobId/", businessController.checkAuth, businessController.getViewApplicants);
+
+router.post("/delete-applicant/:jobId/:userId", businessController.checkAuth, businessController.postDeleteApplicant);
+
+router.get("/view-applicant/:jobId/:applicantId", businessController.checkAuth, businessController.getViewApplicant);
+
 router.get("/logout", businessController.getLogout);
 module.exports = router;

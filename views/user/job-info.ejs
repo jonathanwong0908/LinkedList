@@ -17,7 +17,7 @@
                         <button type="submit" class="job-button save-button flex bg-primary-500 text-neutral-100">Save<i
                                 class="fa-solid fa-bookmark"></i></button>
                     </form>
-                    <form action="/apply-job/" method="POST" class="flex">
+                    <form action="/apply-job/<%= job.id %>" method="POST" class="flex">
                         <button type="submit" class="job-button flex bg-primary-500 text-neutral-100">apply<i
                                 class="fa-solid fa-clipboard"></i></button>
                     </form>

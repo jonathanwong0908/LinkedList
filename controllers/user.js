@@ -12,7 +12,7 @@ exports.getSignup = (req, res) => {
 }
 
 exports.getIndex = async (req, res) => {
-    res.redirect("/jobs");
+    res.redirect("/");
 }
 
 exports.postCreateProfile = async (req, res) => {
@@ -137,14 +137,15 @@ exports.postApplyJob = async (req, res) => {
     const userId = req.user.id;
     const job = await Job.findById(jobId);
     if (job.applicant.includes(userId)) {
-        return res.redirect("/");
+        res.redirect("/jobs");
+        return;
     }
     job.applicant.push(userId);
     await job.save();
     const user = await User.findById(userId);
     user.applied_jobs.push(jobId);
     await user.save();
-    res.redirect("/");
+    res.redirect("/jobs");
 }
 
 exports.getSavedJobs = async (req, res) => {

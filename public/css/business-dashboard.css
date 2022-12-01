@@ -21,7 +21,7 @@ body {
 .job-container {
     justify-content: space-between;
     align-items: center;
-    padding: 1.75rem;
+    padding: 2rem 3rem;
     border-radius: 20px;
 }
 
@@ -35,7 +35,7 @@ body {
 
 .job-utility-container {
     justify-content: space-between;
-    width: 25%;
+    width: 35%;
 }
 
 .job-applicant-container {
@@ -134,4 +134,33 @@ body {
 
 .hidden {
     display: none;
+}
+
+.match-rate-container {
+    place-items: center;
+    margin-right: 2rem;
+    width: 100%;
+}
+
+.match-percentage-indicator {
+    position: relative;
+    place-items: center;
+    margin-top: .5rem;
+    height: 4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(hsl(43 88% 60%) 216deg, hsl(42, 89%, 89%) 0deg);
+}
+
+.match-percentage-indicator::before {
+    content: "";
+    position: absolute;
+    height: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.match-percentage {
+    position: relative;
 }

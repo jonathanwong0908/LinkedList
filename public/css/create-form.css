@@ -73,3 +73,47 @@
 .experience-textarea {
     margin-bottom: 1rem;
 }
+
+.language-container {
+    margin-top: 1rem;
+    padding: 1.5rem 1rem;
+    height: 10rem;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.language-container>.language-tag:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.language-tag {
+    display: inline-block;
+    margin-bottom: .5rem;
+    padding: .25rem .85rem;
+    border-radius: 50px;
+}
+
+.reject-contact-container {
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.reject-contact-container form {
+    width: 100%;
+}
+
+.reject-button {
+    background-color: hsl(0, 50%, 56%);
+}
+
+.mail-button {
+    place-items: center;
+    margin-left: 3rem;
+}
+
+.reject-button,
+.mail-button {
+    width: 100%;
+}

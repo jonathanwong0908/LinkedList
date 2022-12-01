@@ -3,6 +3,7 @@ const User = require("../models/user");
 const Company = require("../models/company");
 const Language = require("../models/language");
 const Job = require("../models/job");
+const { remove } = require("../models/user");
 
 exports.postBusinessSignup = passportSetup.businessSignupAuth;
 
@@ -20,6 +21,9 @@ exports.getBusiness = async (req, res) => {
     const company = await Company.findOne({ user_id: req.user.id });
     const jobs = await Job.find({ company_id: company.id });
     res.render("business/business-dashboard", {
+        title: `${company.name} Jobs`,
+        pageTitle: `${company.name} Jobs`,
+        view: "businessDashboard",
         user: req.user,
         company: company,
         jobs: jobs
@@ -48,6 +52,8 @@ exports.getBusinessProfile = async (req, res) => {
     const company = await Company.findOne({ user_id: req.user.id });
     res.render("business/business-profile", {
         title: `${company.name} Profile`,
+        pageTitle: "Edit company profile",
+        view: "editCompanyProfile",
         user: user,
         company: company
     });
@@ -133,6 +139,57 @@ exports.postDeleteJob = async (req, res) => {
     res.redirect("/business")
 }
 
+exports.getViewApplicants = async (req, res) => {
+    const user = req.user;
+    const company = await Company.findOne({ user_id: user.id });
+    const jobId = req.params.jobId;
+    const job = await Job.findById(jobId).populate("applicant");
+    const matchingRates = [];
+    job.applicant.forEach(applicant => {
+        matchingRates.push(makeMatchingRates(applicant, job))
+    })
+    res.render("business/business-dashboard", {
+        title: "View Applicants",
+        pageTitle: "Applicants",
+        view: "viewApplicants",
+        user,
+        company,
+        job,
+        matchingRates
+    })
+}
+
+exports.postDeleteApplicant = async (req, res) => {
+    const applicantId = req.params.userId;
+    const jobId = req.params.jobId;
+    const job = await Job.findById(jobId);
+    const applicant = await User.findById(applicantId);
+    removeElementByValue(job.applicant, applicantId);
+    removeElementByValue(applicant.applied_jobs, jobId);
+    applicant.rejected_jobs.push(jobId);
+    await job.save();
+    await applicant.save();
+    res.redirect(`/business/view-applicants/${jobId}`)
+}
+
+exports.getViewApplicant = async (req, res) => {
+    const user = req.user;
+    const jobId = req.params.jobId;
+    const applicantId = req.params.applicantId;
+    const applicant = await User.findById(applicantId);
+    const company = await Company.findOne({ user_id: user.id });
+    const job = await Job.findById(jobId);
+    res.render("business/business-profile", {
+        title: "View Applicant",
+        pageTitle: `${applicant.first_name} ${applicant.last_name}`,
+        view: "viewApplicant",
+        user,
+        company,
+        applicant,
+        job
+    })
+}
+
 exports.getLogout = (req, res) => {
     req.logout((err) => {
         if (err) return err;
@@ -155,4 +212,28 @@ function capitalizeFirstLetter(string) {
 
 function splitStringToArray(string) {
     return string.split(",");
+}
+
+function makeMatchingRates(user, job) {
+    let matchRate;
+    let count = 0;
+    for (let i = 0; i < user.language.length; i++) {
+        for (let language of job.language) {
+            if (user.language[i] === language) {
+                count++;
+            }
+        }
+    }
+    matchRate = (count / job.language.length) * 100;
+    if (matchRate >= 99 && matchRate < 100) {
+        return 99;
+    }
+    return Math.round(matchRate);
+}
+
+function removeElementByValue(array, value) {
+    const index = array.indexOf(value);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
 }

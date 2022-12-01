@@ -5,7 +5,6 @@ const salaryFilterContainer = document.querySelector(".salary-input-container");
 const searchLanguageInput = document.querySelector(".search-language-input");
 const languageCheckboxContainers = document.querySelectorAll(".language-checkbox-container");
 const languageCheckboxes = document.querySelectorAll(".language-checkbox");
-const matchRateIndicators = document.querySelectorAll(".match-percentage-indicator");
 
 languageFilterContainer.classList.add("hidden");
 salaryFilterContainer.classList.add("hidden");
@@ -32,10 +31,4 @@ searchLanguageInput.addEventListener("input", (event) => {
         const isVisible = checkbox.innerText.includes(value);
         checkbox.closest(".language-checkbox-container").classList.toggle("hidden", !isVisible);
     })
-})
-
-matchRateIndicators.forEach(indicator => {
-    const value = +indicator.firstElementChild.innerText.slice(0, -1);
-    const degree = (value / 100) * 360;
-    indicator.style.background = `conic-gradient(hsl(43 88% 60%) ${degree}deg, hsl(42, 89%, 89%) 0deg)`
 })

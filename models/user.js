@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema({
         type: [mongoose.SchemaTypes.ObjectId],
         ref: "Job"
     },
+    rejected_jobs: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Job"
+    },
     created_at: {
         type: Date,
         default: () => Date.now(),

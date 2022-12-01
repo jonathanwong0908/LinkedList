@@ -6,8 +6,9 @@
 <body class="ff-primary">
     <%- include("../includes/logged-in-navigation.ejs") %>
     <section class="create-company-section grid bg-primary-300">
+        <% if (view === "editCompanyProfile") { %>
         <div class="create-company-form-container grid bg-neutral-100">
-            <h2 class="form-title">Edit company profile</h2>
+            <h2 class="form-title"><%= pageTitle %></h2>
             <form action="/business/edit-profile/<%= company.id %>" class="create-company-form flex" method="POST">
                 <label for="companyName" class="create-company-label text-neutral-500">Company Name</label>
                 <input type="text" name="companyName" class="create-company-input company-name-input bg-neutral-200"
@@ -20,6 +21,33 @@
                     type="submit">Save</button>
             </form>
         </div>
+        <% } %>
+        <% if (view === "viewApplicant") { %>
+        <div class="create-company-form-container grid bg-neutral-100">
+            <div class="div create-company-form applicant-profile-container flex">
+                <h2 class="form-title"><%= pageTitle %></h2>
+                <label for="applicantExperience" class="create-company-label text-neutral-500">Proficient
+                    Languages</label>
+                <textarea name="applicantExperience"
+                    class="create-company-textarea bg-neutral-200"><%= applicant.experience %></textarea>
+                <label for="proficientLanguages" class="create-company-label text-neutral-500">Proficient
+                    Languages</label>
+                <div class="language-container bg-neutral-200">
+                    <% applicant.language.forEach(language => { %>
+                    <span class="language-tag text-neutral-500 bg-primary-300 d-block"><%= language %></span>
+                    <% }) %>
+                </div>
+                <div class="reject-contact-container flex">
+                    <form action="/business/delete-applicant/<%= job.id %>/<%= applicant.id %>" method="POST">
+                        <button class="create-company-button reject-button bg-primary-500 text-neutral-100 fw-semi-bold"
+                            type="submit">Reject</button>
+                    </form>
+                    <a href="mailto: <%= applicant.email %>"
+                        class="create-company-button mail-button grid bg-primary-500 text-neutral-100 fw-semi-bold">Contact</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
     </section>
 </body>
 
