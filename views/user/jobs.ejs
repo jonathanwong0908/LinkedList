@@ -42,7 +42,7 @@
                     </div>
                     <div class="sort-utility-container">
                         <div class="sort-by">
-                            <a href="/" class="filter-button flex">Clear filters <i
+                            <a href="/jobs" class="filter-button flex">Clear filters <i
                                     class="fa-solid fa-square-minus"></i></a>
                         </div>
                     </div>
@@ -65,11 +65,19 @@
                         </div>
                     </div>
                     <div class="job-button-container grid">
+                        <% if (view === "viewJobs") { %>
                         <form action="/save-job/<%= jobs[i].id %>" method="POST" class="flex">
                             <button type="submit"
                                 class="save-job-button job-button flex bg-primary-500 text-neutral-100">Save<i
                                     class="fa-solid fa-bookmark"></i></button>
                         </form>
+                        <% } else if (view === "viewSavedJobs") { %>
+                        <form action="/delete-saved-job/<%= jobs[i].id %>" method="POST" class="flex">
+                            <button type="submit"
+                                class="save-job-button job-button flex bg-primary-500 text-neutral-100">Delete<i
+                                    class="fa-solid fa-trash"></i></button>
+                        </form>
+                        <% } %>
                         <form action="/job-info/<%= jobs[i].id %>" method="GET" class="flex">
                             <button type="submit"
                                 class="apply-button job-button flex bg-primary-500 text-neutral-100">More Info<i

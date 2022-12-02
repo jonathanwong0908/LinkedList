@@ -150,7 +150,7 @@ exports.getViewApplicants = async (req, res) => {
     })
     res.render("business/business-dashboard", {
         title: "View Applicants",
-        pageTitle: "Applicants",
+        pageTitle: `${job.job_title} Applicants`,
         view: "viewApplicants",
         user,
         company,

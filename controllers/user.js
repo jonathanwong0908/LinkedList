@@ -12,7 +12,7 @@ exports.getSignup = (req, res) => {
 }
 
 exports.getIndex = async (req, res) => {
-    res.redirect("/");
+    res.redirect("/jobs");
 }
 
 exports.postCreateProfile = async (req, res) => {
@@ -61,6 +61,7 @@ exports.getJobs = async (req, res) => {
     res.render("user/jobs", {
         title: "Jobs",
         pageTitle: "Programming Jobs",
+        view: "viewJobs",
         user,
         languages,
         jobs,
@@ -119,7 +120,7 @@ exports.postSaveJob = async (req, res) => {
         user.saved_jobs.push(jobId);
         await user.save();
     }
-    res.redirect("/");
+    res.redirect("/jobs");
 }
 
 exports.getJobInfo = async (req, res) => {
@@ -152,13 +153,16 @@ exports.getSavedJobs = async (req, res) => {
     const user = req.user;
     const languages = await Language.find();
     const matchingRates = [];
-    const jobs = await Job.find({ "id": { "$in": user.saved_jobs } });
+    const jobs = await Job.find({ "_id": { $in: user.saved_jobs } });
+    console.log(user.saved_jobs);
+    // console.log(jobs);
     jobs.forEach(job => {
         matchingRates.push(makeMatchingRates(user, job));
     })
     res.render("user/jobs", {
         title: "Saved Jobs",
         pageTitle: "Saved Jobs",
+        view: "viewSavedJobs",
         jobs,
         user,
         languages,
@@ -166,11 +170,19 @@ exports.getSavedJobs = async (req, res) => {
     })
 }
 
+exports.postDeleteSavedJob = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    const jobId = req.params.jobId;
+    removeElementByValue(user.saved_jobs, jobId);
+    await user.save();
+    res.redirect("/saved-jobs");
+}
+
 exports.postSearchJob = async (req, res) => {
     const user = req.user;
     const searchTerm = req.body.searchTerm;
     const languages = await Language.find();
-    const jobs = await Job.find({ "job_title": { "$regex": searchTerm, $options: "i" } });
+    const jobs = await Job.find({ "job_title": { $regex: searchTerm, $options: "i" } });
     const matchingRates = [];
     jobs.forEach(job => {
         matchingRates.push(makeMatchingRates(user, job));
@@ -237,4 +249,11 @@ function makeMatchingRates(user, job) {
         return 99;
     }
     return Math.round(matchRate);
+}
+
+function removeElementByValue(array, value) {
+    const index = array.indexOf(value);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
 }

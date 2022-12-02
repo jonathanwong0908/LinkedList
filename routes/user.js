@@ -35,6 +35,8 @@ router.post("/apply-job/:id", userController.checkAuth, userController.postApply
 
 router.get("/saved-jobs", userController.checkAuth, userController.getSavedJobs);
 
+router.post("/delete-saved-job/:jobId", userController.checkAuth, userController.postDeleteSavedJob);
+
 router.post("/search-job", userController.checkAuth, userController.postSearchJob);
 
 router.get("/logout", userController.getLogout);
