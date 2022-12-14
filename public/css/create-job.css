@@ -68,6 +68,10 @@
     height: 10.5rem;
 }
 
+.user-selected-language-textarea {
+    height: 12.5rem;
+}
+
 .required-language-button-container {
     position: absolute;
     bottom: 1.4rem;
@@ -91,6 +95,7 @@
 
 .search-language-area {
     width: 45%;
+    height: 14.65rem;
     flex-direction: column;
     margin-left: 1rem;
 }

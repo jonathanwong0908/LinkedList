@@ -10,6 +10,7 @@
     <section class="job-dashboard-section grid">
         <div class="job-dashboard-container flex bg-neutral-100">
             <h1 class="job-dashboard-title fw-semi-bold text-neutral-500 fs-700"><%= pageTitle %></h1>
+            <% if (view === "viewJobs") { %>
             <form action="/filter-jobs" method="POST" class="job-filter-form">
                 <label for="" class="job-filter-label text-neutral-500 fs-600">Filter <i
                         class="fa-solid fa-filter"></i></label>
@@ -48,6 +49,7 @@
                     </div>
                 </div>
             </form>
+            <% } %>
             <% if (jobs.length > 0) {for (let i = 0; i < jobs.length; i++){ %>
             <div class="job-container flex bg-primary-300">
                 <div class="job-main-information-container">

@@ -85,6 +85,7 @@ exports.postFilterJobs = async (req, res) => {
         return res.render("user/jobs", {
             title: "Jobs",
             pageTitle: "Programming Jobs",
+            view: "viewJobs",
             user,
             languages,
             jobs,
@@ -105,6 +106,7 @@ exports.postFilterJobs = async (req, res) => {
     res.render("user/jobs", {
         title: "Jobs",
         pageTitle: "Programming Jobs",
+        view: "viewJobs",
         user,
         languages,
         jobs,
@@ -190,6 +192,7 @@ exports.postSearchJob = async (req, res) => {
     res.render("user/jobs", {
         title: "Search Jobs",
         pageTitle: `${searchTerm} Related Programming Jobs`,
+        view: "viewJobs",
         user,
         jobs,
         languages,
